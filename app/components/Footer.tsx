@@ -1,23 +1,39 @@
+'use client';
+
+import type { CSSProperties } from 'react';
+import { Tx, useT } from '../i18n/Tx';
+import { Reveal } from './motion/Reveal';
+
 export default function Footer() {
+  const t = useT();
+
   return (
     <>
       <section className="cta-block" id="contactos">
-        <div className="orb orb-lime orb-xl" style={{ top: '-50px', right: '-150px', opacity: 0.3 }}></div>
-        <div className="orb orb-green orb-lg" style={{ bottom: '-100px', left: '-100px', opacity: 0.4 }}></div>
+        <div className="orb orb-lime orb-xl" style={{ top: '-50px', right: '-150px', '--orb-o': 0.3 } as CSSProperties}></div>
+        <div className="orb orb-green orb-lg" style={{ bottom: '-100px', left: '-100px', '--orb-o': 0.4 } as CSSProperties}></div>
         <div className="wrap">
-          <span className="eyebrow">Falar connosco</span>
-          <h2>Tem um <em>projeto</em> em mente?</h2>
-          <p>Damos resposta a propostas e pedidos de orçamento em 24 horas. Atendimento em português, inglês e francês.</p>
-          <div className="cta-row">
-            <a href="#" className="btn btn-lime">WhatsApp · (+238) 955 10 20</a>
-            <a href="mailto:#" className="btn btn-ghost">Enviar email</a>
-            <a href="tel:+2382647607" className="btn btn-ghost">(+238) 264 76 07</a>
-          </div>
+          <Reveal variant="up">
+            <span className="eyebrow"><Tx k="cta.eyebrow" /></span>
+          </Reveal>
+          <Reveal variant="blur-up" delay={0.1}>
+            <h2><Tx k="cta.h2a" /><em><Tx k="cta.h2b" /></em><Tx k="cta.h2c" /></h2>
+          </Reveal>
+          <Reveal variant="up" delay={0.22}>
+            <p><Tx k="cta.p" /></p>
+          </Reveal>
+          <Reveal variant="zoom" delay={0.34}>
+            <div className="cta-row">
+              <a href="#" className="btn btn-lime">WhatsApp · (+238) 955 10 20</a>
+              <a href="mailto:#" className="btn btn-ghost"><Tx k="cta.email" /></a>
+              <a href="tel:+2382647607" className="btn btn-ghost">(+238) 264 76 07</a>
+            </div>
+          </Reveal>
         </div>
       </section>
 
       <footer>
-        <div className="orb orb-dark orb-xl" style={{ top: '-200px', left: '-200px', opacity: 0.4 }}></div>
+        <div className="orb orb-dark orb-xl" style={{ top: '-200px', left: '-200px', '--orb-o': 0.4 } as CSSProperties}></div>
         <div className="wrap">
           <div className="grid">
             <div>
@@ -41,30 +57,30 @@ export default function Footer() {
               <p style={{ marginTop: '16px' }}>(+238) 264 76 07<br />info@scryptus1-caboverde.com</p>
             </div>
             <div>
-              <h4>Navegação</h4>
+              <h4><Tx k="footer.nav" /></h4>
               <ul>
-                <li><a href="#sobre">Sobre</a></li>
-                <li><a href="#areas">Áreas de negócio</a></li>
-                <li><a href="#clientes">Clientes</a></li>
-                <li><a href="#contactos">Contactos</a></li>
+                <li><a href="#sobre"><Tx k="nav.sobre" /></a></li>
+                <li><a href="#areas"><Tx k="nav.areas" /></a></li>
+                <li><a href="#clientes"><Tx k="nav.clientes" /></a></li>
+                <li><a href="#contactos"><Tx k="nav.contactos" /></a></li>
               </ul>
             </div>
             <div>
-              <h4>Loja</h4>
-              <p>Segunda a Sexta</p>
+              <h4><Tx k="footer.loja" /></h4>
+              <p><Tx k="footer.dias" /></p>
               <p>08h00 – 13h00</p>
               <p>14h00 – 17h00</p>
-              <p style={{ marginTop: '16px' }}><a href="#" style={{ color: 'var(--lime)', fontWeight: 700 }}>Ver no mapa &rarr;</a></p>
+              <p style={{ marginTop: '16px' }}><a href="#" style={{ color: 'var(--lime)', fontWeight: 700 }}><Tx k="footer.mapa" /></a></p>
             </div>
             <div>
               <h4>Newsletter</h4>
-              <p style={{ marginBottom: '18px' }}>Novidades, eventos e ofertas especiais.</p>
-              <input type="email" placeholder="O seu email" />
-              <button className="sub-btn">Subscrever</button>
+              <p style={{ marginBottom: '18px' }}><Tx k="footer.news.p" /></p>
+              <input type="email" placeholder={t('footer.news.ph')} />
+              <button className="sub-btn"><Tx k="footer.news.btn" /></button>
             </div>
           </div>
           <div className="bottom">
-            <span>© 2026 Scryptus 1 · Grupo CAVEX · Todos os direitos reservados.</span>
+            <span><Tx k="footer.rights" /></span>
             <div className="socials">
               <a href="#" aria-label="Facebook">f</a>
               <a href="#" aria-label="Instagram">ig</a>

@@ -1,4 +1,13 @@
+'use client';
+
+import { Fragment } from 'react';
+import { useLocale } from '../i18n/LanguageProvider';
+import { Tx } from '../i18n/Tx';
+import { LOCALES } from '../i18n/translations';
+
 export default function Header() {
+  const { locale, setLocale } = useLocale();
+
   return (
     <header className="topnav">
       <div className="wrap">
@@ -18,14 +27,28 @@ export default function Header() {
           </svg>
         </a>
         <nav className="primary">
-          <a href="#sobre">Sobre</a>
-          <a href="#areas">Áreas de negócio</a>
-          <a href="#clientes">Clientes</a>
-          <a href="#contactos">Contactos</a>
+          <a href="#sobre"><Tx k="nav.sobre" /></a>
+          <a href="#areas"><Tx k="nav.areas" /></a>
+          <a href="#clientes"><Tx k="nav.clientes" /></a>
+          <a href="#contactos"><Tx k="nav.contactos" /></a>
         </nav>
         <div className="nav-right">
-          <span className="lang"><strong>PT</strong> · EN · FR</span>
-          <a href="#contactos" className="btn btn-dark btn-sm">Pedir orçamento</a>
+          <span className="lang">
+            {LOCALES.map((l, i) => (
+              <Fragment key={l}>
+                {i > 0 && <span aria-hidden="true">·</span>}
+                <button
+                  type="button"
+                  className={locale === l ? 'active' : ''}
+                  aria-pressed={locale === l}
+                  onClick={() => setLocale(l)}
+                >
+                  {l.toUpperCase()}
+                </button>
+              </Fragment>
+            ))}
+          </span>
+          <a href="#contactos" className="btn btn-dark btn-sm"><Tx k="nav.orcamento" /></a>
         </div>
       </div>
     </header>

@@ -1,30 +1,31 @@
+'use client';
+
+import type { CSSProperties } from 'react';
+import { Tx } from '../i18n/Tx';
+import { Reveal, RevealGroup, RevealItem } from './motion/Reveal';
+
+const CLIENTES = ['BCV', 'BCA', 'BAI CV', 'Min. Agricultura', 'CMP', 'CM Mindelo', 'INCV', 'CV Telecom', 'ASA', 'IEFP', 'Correios CV', '+ 14'];
+
 export default function Clientes() {
   return (
     <section className="block bg-paper-2" id="clientes">
       <div className="wrap">
         <div className="block-head">
-          <div className="text">
-            <span className="eyebrow">Quem confia em nós</span>
-            <h2>Bancos, ministérios e <em>câmaras municipais.</em></h2>
-            <p style={{ fontSize: '16px', color: 'var(--ink-mute)', marginTop: '18px', maxWidth: '54ch', lineHeight: 1.65 }}>
-              Um portefólio construído ao longo de mais de uma década, em projetos públicos e privados — em todas as ilhas.
+          <Reveal variant="up" className="text">
+            <span className="eyebrow"><Tx k="clientes.eyebrow" /></span>
+            <h2><Tx k="clientes.h2a" /><em><Tx k="clientes.h2b" /></em></h2>
+            <p style={{ fontSize: '16px', color: 'var(--ink-mute)', marginTop: '18px', maxWidth: '54ch', lineHeight: 1.65 } as CSSProperties}>
+              <Tx k="clientes.intro" />
             </p>
-          </div>
+          </Reveal>
         </div>
-        <div className="clients-grid">
-          <div className="client">BCV</div>
-          <div className="client">BCA</div>
-          <div className="client">BAI CV</div>
-          <div className="client">Min. Agricultura</div>
-          <div className="client">CMP</div>
-          <div className="client">CM Mindelo</div>
-          <div className="client">INCV</div>
-          <div className="client">CV Telecom</div>
-          <div className="client">ASA</div>
-          <div className="client">IEFP</div>
-          <div className="client">Correios CV</div>
-          <div className="client">+ 14</div>
-        </div>
+        <RevealGroup className="clients-grid" stagger={0.05}>
+          {CLIENTES.map((cliente) => (
+            <RevealItem key={cliente} className="cell" variant="zoom" duration={0.5}>
+              <div className="client">{cliente}</div>
+            </RevealItem>
+          ))}
+        </RevealGroup>
       </div>
     </section>
   );

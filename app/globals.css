@@ -70,14 +70,39 @@ h2 em { color: var(--green-600); font-style: normal }
 .btn-ink:hover { border-color: var(--green-700); color: var(--green-700) }
 .btn-sm { padding: 10px 18px; font-size: 13px }
 
-.orb { position: absolute; pointer-events: none; border-radius: 50%; filter: blur(40px); z-index: 1 }
-.orb-lime { background: radial-gradient(circle, var(--lime) 0%, transparent 70%); opacity: 0.45 }
-.orb-green { background: radial-gradient(circle, var(--green-400) 0%, transparent 70%); opacity: 0.5 }
-.orb-dark { background: radial-gradient(circle, var(--green-700) 0%, transparent 70%); opacity: 0.6 }
-.orb-xl { width: 480px; height: 480px }
-.orb-lg { width: 300px; height: 300px }
-.orb-md { width: 180px; height: 180px }
-.orb-sm { width: 90px; height: 90px }
+.orb { position: absolute; pointer-events: none; border-radius: 50%; filter: blur(40px); z-index: 1; will-change: transform, opacity }
+.orb-lime { --orb-o: 0.45; background: radial-gradient(circle, var(--lime) 0%, transparent 70%); opacity: var(--orb-o) }
+.orb-green { --orb-o: 0.5; background: radial-gradient(circle, var(--green-400) 0%, transparent 70%); opacity: var(--orb-o) }
+.orb-dark { --orb-o: 0.6; background: radial-gradient(circle, var(--green-700) 0%, transparent 70%); opacity: var(--orb-o) }
+.orb-xl { width: 480px; height: 480px; animation: orb-drift-a 24s ease-in-out infinite, orb-breathe 9s ease-in-out infinite }
+.orb-lg { width: 300px; height: 300px; animation: orb-drift-b 18s ease-in-out infinite, orb-breathe 7s ease-in-out infinite }
+.orb-md { width: 180px; height: 180px; animation: orb-drift-c 13s ease-in-out infinite, orb-breathe 6s ease-in-out infinite }
+.orb-sm { width: 90px; height: 90px; animation: orb-drift-c 10s ease-in-out infinite, orb-breathe 5s ease-in-out infinite }
+/* Dessincronizar por cor — depois do shorthand "animation" para o delay não ser anulado */
+.orb-green { animation-delay: -7s }
+.orb-dark { animation-delay: -13s }
+
+/* Deriva orgânica dos orbes — percursos amplos por tamanho + respiração de luminosidade */
+@keyframes orb-drift-a {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1) }
+  25% { transform: translate3d(110px, -80px, 0) scale(1.16) }
+  50% { transform: translate3d(-70px, 75px, 0) scale(0.9) }
+  75% { transform: translate3d(-120px, -45px, 0) scale(1.08) }
+}
+@keyframes orb-drift-b {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1) }
+  30% { transform: translate3d(-95px, 65px, 0) scale(1.18) }
+  60% { transform: translate3d(80px, -90px, 0) scale(0.88) }
+}
+@keyframes orb-drift-c {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1) }
+  33% { transform: translate3d(70px, 55px, 0) scale(1.22) }
+  66% { transform: translate3d(-60px, -65px, 0) scale(0.85) }
+}
+@keyframes orb-breathe {
+  0%, 100% { opacity: var(--orb-o) }
+  50% { opacity: calc(var(--orb-o) * 1.45) }
+}
 
 header.topnav { position: sticky; top: 0; z-index: 50; background: rgba(250, 250, 247, 0.85); backdrop-filter: blur(14px); border-bottom: 0.5px solid var(--line) }
 .topnav .wrap { display: flex; align-items: center; justify-content: space-between; height: 72px }
@@ -87,10 +112,19 @@ nav.primary { display: flex; gap: 32px }
 nav.primary a { font-size: 14px; color: var(--ink-mute); font-weight: 700; transition: color 0.15s }
 nav.primary a:hover { color: var(--green-700) }
 .nav-right { display: flex; align-items: center; gap: 18px }
-.lang { font-size: 12px; color: var(--ink-mute); letter-spacing: 0.06em; font-weight: 700 }
-.lang strong { color: var(--green-700); font-weight: 700 }
+.lang { font-size: 12px; color: var(--ink-mute); letter-spacing: 0.06em; font-weight: 700; display: inline-flex; align-items: center; gap: 4px }
+.lang button { background: none; border: 0; padding: 0; font: inherit; letter-spacing: inherit; color: inherit; cursor: pointer; transition: color 0.15s }
+.lang button:hover { color: var(--green-800) }
+.lang button.active { color: var(--green-700) }
 
 .hero { position: relative; color: #fff; overflow: hidden; background: var(--gradient-hero); min-height: 680px; display: flex; align-items: center; padding: 80px 0 140px }
+/* Camada de luz em movimento lento — dá fluidez ao gradiente estático */
+.hero::before { content: ""; position: absolute; inset: -30%; pointer-events: none; z-index: 1; background: radial-gradient(38% 45% at 70% 30%, rgba(168, 212, 32, 0.18) 0%, transparent 70%), radial-gradient(45% 50% at 22% 75%, rgba(143, 179, 94, 0.22) 0%, transparent 70%); animation: hero-flow 22s ease-in-out infinite alternate; will-change: transform }
+@keyframes hero-flow {
+  0% { transform: translate3d(-4%, -3%, 0) scale(1) }
+  50% { transform: translate3d(3%, 4%, 0) scale(1.08) }
+  100% { transform: translate3d(6%, -4%, 0) scale(1.02) }
+}
 .hero::after { content: ""; position: absolute; bottom: -1px; left: 0; right: 0; height: 120px; background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120' preserveAspectRatio='none'><path d='M0,80 C240,0 480,120 720,60 C960,0 1200,100 1440,40 L1440,120 L0,120 Z' fill='%23fafaf7'/></svg>") center bottom/100% 100% no-repeat; z-index: 3 }
 .hero .wrap { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 48px; align-items: center; z-index: 2; width: 100% }
 .hero-text { position: relative; z-index: 2 }
@@ -215,4 +249,27 @@ footer .bottom { display: flex; justify-content: space-between; align-items: cen
   .trust .wrap { grid-template-columns: 1fr; gap: 20px }
   h1 { font-size: 42px }
   h2 { font-size: 32px }
+}
+
+/* --- PRELOADER --- */
+.preloader { position: fixed; top: 0; left: 0; right: 0; height: 112vh; height: 112lvh; z-index: 9999; background: radial-gradient(120% 90% at 70% 20%, var(--green-900) 0%, var(--green-950) 65%); border-radius: 0 0 50% 50% / 0 0 6vh 6vh; will-change: transform }
+.preloader-inner { height: 100vh; height: 100lvh; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 28px }
+.preloader-logo { width: min(300px, 64vw); height: auto; overflow: visible }
+.preloader-tagline { font-family: var(--body); font-style: italic; font-size: 15px; letter-spacing: 0.04em; color: rgba(255, 255, 255, 0.55) }
+.preloader-track { width: min(220px, 50vw); height: 2px; background: rgba(255, 255, 255, 0.12); border-radius: 2px; overflow: hidden }
+.preloader-bar { height: 100%; background: linear-gradient(90deg, var(--lime) 0%, var(--lime-bright) 100%); transform-origin: left; border-radius: 2px }
+
+/* --- CÉLULAS DE ANIMAÇÃO (wrappers de reveal dentro de grelhas) --- */
+.cell { min-width: 0 }
+.cell-fill { min-width: 0 }
+.cell-fill > * { height: 100% }
+
+/* --- IMAGENS SANITY --- */
+.hero-pill img, .hero-pill-small img, .about-pill img, .vert .img img { object-fit: cover }
+.vert .img::before { z-index: 2 }
+
+/* --- MOVIMENTO REDUZIDO --- */
+@media (prefers-reduced-motion: reduce) {
+  .orb, .hero::before { animation: none }
+  html { scroll-behavior: auto }
 }

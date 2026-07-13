@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Carlito } from "next/font/google";
 import localFont from "next/font/local";
+import { SanityLive } from "@/sanity/lib/live";
 import "./globals.css";
 
 // 1. Carregar a Delicious Heavy a partir da pasta public
@@ -32,7 +33,10 @@ export default function RootLayout({
   return (
     // 3. Injetar as duas fontes globalmente na tag HTML
     <html lang="pt" className={`${deliciousHeavy.variable} ${carlito.variable}`}>
-      <body>{children}</body>
+      <body>
+        {children}
+        <SanityLive />
+      </body>
     </html>
   );
 }
