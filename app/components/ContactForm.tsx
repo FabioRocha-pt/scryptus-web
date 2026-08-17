@@ -1,7 +1,6 @@
 'use client';
 
-import { useSearchParams } from 'next/navigation';
-import { useActionState } from 'react';
+import { useActionState, useEffect, useRef } from 'react';
 import type { LText } from '@/sanity/lib/queries';
 import { ESTADO_INICIAL, enviarPedido } from '../actions/forms';
 import { useLocale } from '../i18n/LanguageProvider';
@@ -14,6 +13,19 @@ export interface AreaOpcao {
   tituloCurto: LText;
 }
 
+/** «Os campos com * são obrigatórios.» — o asterisco sai em verde. */
+function Obrigatorios({ texto }: { texto: string }) {
+  const [antes, ...resto] = texto.split('*');
+  if (resto.length === 0) return <>{texto}</>;
+  return (
+    <>
+      {antes}
+      <span style={{ color: 'var(--green-600)' }}>*</span>
+      {resto.join('*')}
+    </>
+  );
+}
+
 export default function ContactForm({
   areas,
   titulo,
@@ -22,15 +34,21 @@ export default function ContactForm({
   titulo?: MaybeLText;
 }) {
   const [state, action, pending] = useActionState(enviarPedido, ESTADO_INICIAL);
-  const params = useSearchParams();
   const { locale } = useLocale();
   const t = useT();
   const l = useL();
+  const selectArea = useRef<HTMLSelectElement>(null);
 
-  // A área pode vir pré-selecionada por ?area=grafica (links «Pedir orçamento»)
-  const pedida = params.get('area') ?? '';
-  const valida = areas.some((a) => a.slug === pedida) || ['varias', 'outro'].includes(pedida);
-  const areaInicial = valida ? pedida : '';
+  // A área pode vir pré-selecionada por ?area=grafica (links «Pedir orçamento»).
+  // Lê-se depois da montagem — com `useSearchParams` a página deixaria de ser
+  // pré-renderizada e o formulário desapareceria do HTML servido.
+  useEffect(() => {
+    const select = selectArea.current;
+    if (!select) return;
+    const pedida = new URLSearchParams(window.location.search).get('area');
+    if (!pedida) return;
+    if ([...select.options].some((o) => o.value === pedida)) select.value = pedida;
+  }, []);
 
   const mensagemErro =
     state.codigo === 'campos'
@@ -92,7 +110,7 @@ export default function ContactForm({
           <label htmlFor="area">
             <Tx k="form.area" />
           </label>
-          <select id="area" name="area" key={areaInicial} defaultValue={areaInicial}>
+          <select id="area" name="area" ref={selectArea} defaultValue="">
             <option value="">{t('form.areaVazia')}</option>
             {areas.map((area) => (
               <option key={area.slug} value={area.slug}>
@@ -118,7 +136,9 @@ export default function ContactForm({
           <button type="submit" className="btn btn-lime" disabled={pending}>
             {pending ? t('form.aEnviar') : t('form.enviar')}
           </button>
-          <span className="hint">{t('form.obrigatorios')}</span>
+          <span className="hint">
+            <Obrigatorios texto={t('form.obrigatorios')} />
+          </span>
         </div>
       </form>
     </div>

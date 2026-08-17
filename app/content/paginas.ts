@@ -121,12 +121,15 @@ export const PRIVACIDADE_DEFAULTS = {
         l('No formulário de pedido de orçamento: nome, empresa ou instituição, email, telefone, área de negócio e a descrição do pedido.'),
         l('No formulário de subscrição da newsletter: o endereço de email.'),
       ],
+      paragrafosFinais: [
+        l('Não recolhemos dados de navegação para fins publicitários nem utilizamos cookies de rastreamento de terceiros.'),
+      ],
     },
     {
       titulo: l('Para que utilizamos os seus dados'),
       paragrafos: [
         l('Os dados do formulário de orçamento são utilizados exclusivamente para responder ao pedido, elaborar a proposta e dar seguimento comercial ao contacto. O endereço de email da newsletter é utilizado apenas para enviar comunicações sobre novidades, eventos e ofertas da empresa.'),
-        l('Não vendemos, alugamos nem cedemos os seus dados a terceiros para fins de marketing. Não recolhemos dados de navegação para fins publicitários nem utilizamos cookies de rastreamento de terceiros.'),
+        l('Não vendemos, alugamos nem cedemos os seus dados a terceiros para fins de marketing.'),
       ],
       lista: [],
     },

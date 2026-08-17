@@ -1,7 +1,6 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
 import { urlFor } from '@/sanity/lib/image';
 import type { SanityHome } from '@/sanity/lib/queries';
 import { Tx, TxOr } from '../i18n/Tx';
@@ -53,9 +52,9 @@ export default function Hero({ data }: { data?: SanityHome['hero'] }) {
               <a href="#areas" className="btn btn-lime">
                 <Tx k="hero.cta1" />
               </a>
-              <Link href="/contactos" className="btn btn-ghost">
+              <a href="#contactos" className="btn btn-ghost">
                 <Tx k="hero.cta2" />
-              </Link>
+              </a>
             </div>
           </Reveal>
         </div>

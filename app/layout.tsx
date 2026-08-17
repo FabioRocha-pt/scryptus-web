@@ -27,11 +27,23 @@ export const metadata: Metadata = {
   },
   description:
     "Plataforma integrada de comércio internacional, apoio técnico e consultoria na Praia, Cabo Verde. Oito áreas de negócio: gráfica, agricultura, têxteis, EPI, mobiliário, informática, museus e outras áreas.",
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: "/favicon.png",
+  },
   openGraph: {
     type: "website",
     siteName: "Scryptus 1",
     locale: "pt_PT",
     url: SITE_URL,
+    images: [{ url: "/og-imagem.jpg", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/og-imagem.jpg"],
   },
   other: {
     "theme-color": "#2d4f3a",

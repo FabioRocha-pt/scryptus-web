@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import { Suspense } from 'react';
 import { fetchContent } from '@/sanity/lib/fetchContent';
 import {
   AREAS_QUERY,
@@ -59,12 +58,10 @@ export default async function ContactosPage() {
         <div className="orb orb-lime orb-md" style={{ top: '120px', right: '-70px' }}></div>
         <div className="wrap">
           <div className="contact-grid">
-            <Suspense fallback={null}>
-              <ContactForm
-                areas={areas.map((a) => ({ slug: a.slug, tituloCurto: a.tituloCurto }))}
-                titulo={txt(doc?.formTitulo, D.formTitulo)}
-              />
-            </Suspense>
+            <ContactForm
+              areas={areas.map((a) => ({ slug: a.slug, tituloCurto: a.tituloCurto }))}
+              titulo={txt(doc?.formTitulo, D.formTitulo)}
+            />
             <ContactInfo site={site} passos={passos.length > 0 ? passos : D.passos} />
           </div>
         </div>

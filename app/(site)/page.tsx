@@ -12,7 +12,6 @@ import Hero from '../components/Hero';
 import Oferta from '../components/Oferta';
 import Preloader from '../components/Preloader';
 import Sobre from '../components/Sobre';
-import TrustBar from '../components/TrustBar';
 import { resolveClientes } from '../content/clientes';
 import { resolveAreas } from '../content/resolveAreas';
 import { resolveSite } from '../content/site';
@@ -31,7 +30,6 @@ export default async function Home() {
     <>
       <Preloader />
       <Hero data={home?.hero} />
-      <TrustBar numeros={home?.oferta?.numeros} />
       <Oferta data={home?.oferta} />
       <AreasNegocio areas={areas} />
       <Sobre data={home?.sobre} />

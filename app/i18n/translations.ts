@@ -34,11 +34,6 @@ const pt = {
   'hero.cta1': 'Ver áreas de negócio →',
   'hero.cta2': 'Falar connosco',
 
-  // Barra de confiança
-  'trust.l1': 'anos no mercado',
-  'trust.l2': 'áreas de negócio',
-  'trust.l3': 'grupo internacional',
-  'trust.l4': 'cobertura nacional',
 
   // Oferta
   'oferta.eyebrow': 'A nossa oferta',
@@ -92,7 +87,6 @@ const pt = {
   'footer.empresa': 'Empresa',
   'footer.loja': 'Loja',
   'footer.dias': 'Segunda a sexta',
-  'footer.mapa': 'Ver no mapa →',
   'footer.contactosLink': 'Contactos e orçamentos',
   'footer.news.p': 'Novidades, eventos e ofertas especiais.',
   'footer.news.ph': 'O seu email',
@@ -181,10 +175,6 @@ const en: Record<TKey, string> = {
   'hero.cta1': 'See business areas →',
   'hero.cta2': 'Talk to us',
 
-  'trust.l1': 'years in the market',
-  'trust.l2': 'business areas',
-  'trust.l3': 'international group',
-  'trust.l4': 'nationwide coverage',
 
   'oferta.eyebrow': 'What we offer',
   'oferta.h2a': 'Four reasons to ',
@@ -232,7 +222,6 @@ const en: Record<TKey, string> = {
   'footer.empresa': 'Company',
   'footer.loja': 'Store',
   'footer.dias': 'Monday to Friday',
-  'footer.mapa': 'View on map →',
   'footer.contactosLink': 'Contacts and quotes',
   'footer.news.p': 'News, events and special offers.',
   'footer.news.ph': 'Your email',
@@ -315,10 +304,6 @@ const fr: Record<TKey, string> = {
   'hero.cta1': 'Voir les domaines d’activité →',
   'hero.cta2': 'Contactez-nous',
 
-  'trust.l1': 'ans sur le marché',
-  'trust.l2': 'domaines d’activité',
-  'trust.l3': 'groupe international',
-  'trust.l4': 'couverture nationale',
 
   'oferta.eyebrow': 'Notre offre',
   'oferta.h2a': 'Quatre raisons de ',
@@ -366,7 +351,6 @@ const fr: Record<TKey, string> = {
   'footer.empresa': 'Entreprise',
   'footer.loja': 'Boutique',
   'footer.dias': 'Du lundi au vendredi',
-  'footer.mapa': 'Voir sur la carte →',
   'footer.contactosLink': 'Contacts et devis',
   'footer.news.p': 'Nouveautés, événements et offres spéciales.',
   'footer.news.ph': 'Votre email',

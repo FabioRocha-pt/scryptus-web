@@ -55,8 +55,12 @@ export default async function PortefolioPage() {
 
       <PortNav areas={areas.map((a) => ({ slug: a.slug, tituloCurto: a.tituloCurto }))} />
 
-      {areas.map((area) => (
-        <section className="block" id={area.slug} key={area.slug}>
+      {areas.map((area, i) => (
+        <section
+          className={i % 2 === 0 ? 'block' : 'block bg-paper-2'}
+          id={area.slug}
+          key={area.slug}
+        >
           <div className="wrap">
             <BlockHead
               eyebrowKey="area.numero"
@@ -71,9 +75,9 @@ export default async function PortefolioPage() {
         </section>
       ))}
 
-      <section className="block" style={{ paddingTop: 0 }}>
+      <section className="block">
         <div className="wrap">
-          <Notice texto={txt(doc?.aviso, D.aviso)} />
+          <Notice texto={txt(doc?.aviso, D.aviso)} semMargem />
         </div>
       </section>
 

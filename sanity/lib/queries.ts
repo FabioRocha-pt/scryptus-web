@@ -86,7 +86,6 @@ export interface SanityHome {
   } | null
   oferta: {
     pilares?: (SanityPilar | null)[] | null
-    numeros?: (SanityEstatistica | null)[] | null
   } | null
   sobre: {
     image?: SanityImageWithAlt | null
@@ -128,6 +127,7 @@ export interface SanityPrivacidade extends SanityPageHeader {
         titulo?: LText | null
         paragrafos?: (LText | null)[] | null
         lista?: (LText | null)[] | null
+        paragrafosFinais?: (LText | null)[] | null
       } | null)[]
     | null
 }
@@ -159,10 +159,7 @@ export const SITE_SETTINGS_QUERY = defineQuery(`*[_type == "siteSettings"][0]{
 
 export const HOME_QUERY = defineQuery(`{
   "hero": *[_type == "hero"][0]{mainImage, secondaryImage, eyebrow, tagline, lead},
-  "oferta": *[_type == "oferta"][0]{
-    pilares[]{num, titulo, descricao},
-    numeros[]{valor, legenda}
-  },
+  "oferta": *[_type == "oferta"][0]{pilares[]{num, titulo, descricao}},
   "sobre": *[_type == "sobre"][0]{image, pullquote, body, estatisticas[]{valor, legenda}},
   "areas": *[_type == "area"] | order(num asc){${AREA_FIELDS}},
   "clientes": *[_type == "cliente"] | order(ordem asc){nome, nomeCurto, logo}
@@ -198,5 +195,5 @@ export const CONTACTOS_QUERY = defineQuery(`*[_type == "contactosPage"][0]{
 
 export const PRIVACIDADE_QUERY = defineQuery(`*[_type == "privacidadePage"][0]{
   ${CABECALHO},
-  secoes[]{titulo, paragrafos, lista}
+  secoes[]{titulo, paragrafos, lista, paragrafosFinais}
 }`)

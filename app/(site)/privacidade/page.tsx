@@ -28,6 +28,7 @@ export default async function PrivacidadePage() {
       titulo: s!.titulo!,
       paragrafos: (s!.paragrafos ?? []).filter(hasText) as LText[],
       lista: (s!.lista ?? []).filter(hasText) as LText[],
+      paragrafosFinais: (s!.paragrafosFinais ?? []).filter(hasText) as LText[],
     }));
 
   return (
@@ -37,6 +38,7 @@ export default async function PrivacidadePage() {
         eyebrow={txt(doc?.eyebrow, D.eyebrow)}
         titulo={txt(doc?.titulo, D.titulo)}
         lead={txt(doc?.lead, D.lead)}
+        orbLime={false}
       />
 
       <section className="block">

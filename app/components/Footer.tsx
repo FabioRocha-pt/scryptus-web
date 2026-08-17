@@ -13,6 +13,13 @@ export interface FooterArea {
   tituloCurto: LText;
 }
 
+/** Redes sociais do rodapé, na ordem do site de referência. */
+const SOCIAIS = [
+  { chave: 'facebook', etiqueta: 'Facebook', sigla: 'f' },
+  { chave: 'instagram', etiqueta: 'Instagram', sigla: 'ig' },
+  { chave: 'linkedin', etiqueta: 'LinkedIn', sigla: 'in' },
+] as const satisfies readonly { chave: keyof SiteInfo; etiqueta: string; sigla: string }[];
+
 /** Divide um texto com quebras de linha em <br />. */
 function Linhas({ texto }: { texto: string }) {
   const linhas = texto.split('\n');
@@ -39,7 +46,7 @@ export default function Footer({ site, areas }: { site: SiteInfo; areas: FooterA
         <div className="grid">
           <div>
             <div className="brand-foot">
-              <Logo height={34} />
+              <Logo height={48} />
             </div>
             <p>
               <Linhas texto={site.razaoSocial} />
@@ -101,21 +108,8 @@ export default function Footer({ site, areas }: { site: SiteInfo; areas: FooterA
             <p>
               <TxL v={site.horarioDias} />
             </p>
-            <p>
-              <Linhas texto={site.horarioHoras} />
-            </p>
-            {site.mapaUrl && (
-              <p style={{ marginTop: '12px' }}>
-                <a
-                  href={site.mapaUrl}
-                  target="_blank"
-                  rel="noopener"
-                  style={{ color: 'var(--lime)', fontWeight: 700 }}
-                >
-                  <Tx k="footer.mapa" />
-                </a>
-              </p>
-            )}
+            {/* No rodapé o horário fica numa linha só, separado por «·». */}
+            <p>{site.horarioHoras.split('\n').join(' · ')}</p>
           </div>
 
           <div>
@@ -132,21 +126,19 @@ export default function Footer({ site, areas }: { site: SiteInfo; areas: FooterA
             <TxL v={site.copyright} />
           </span>
           <div className="socials">
-            {site.facebook && (
-              <a href={site.facebook} target="_blank" rel="noopener" aria-label="Facebook">
-                f
-              </a>
-            )}
-            {site.instagram && (
-              <a href={site.instagram} target="_blank" rel="noopener" aria-label="Instagram">
-                ig
-              </a>
-            )}
-            {site.linkedin && (
-              <a href={site.linkedin} target="_blank" rel="noopener" aria-label="LinkedIn">
-                in
-              </a>
-            )}
+            {SOCIAIS.map(({ chave, etiqueta, sigla }) => {
+              const url = site[chave];
+              return (
+                <a
+                  key={chave}
+                  href={url || '#'}
+                  aria-label={etiqueta}
+                  {...(url ? { target: '_blank', rel: 'noopener' } : {})}
+                >
+                  {sigla}
+                </a>
+              );
+            })}
           </div>
         </div>
       </div>

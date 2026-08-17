@@ -41,13 +41,6 @@ export default function Sobre({ data }: { data?: SanityHome['sobre'] }) {
                   Foto do armazém
                   <br />
                   (Rua da Cruz Vermelha)
-                  <br />
-                  <br />
-                  Sugestão:
-                  <br />
-                  formato pílula vertical
-                  <br />
-                  com pessoa real
                 </>
               )}
             </div>

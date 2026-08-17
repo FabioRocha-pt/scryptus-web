@@ -39,6 +39,7 @@ export default function PageHero({
   eyebrowKey,
   titulo,
   lead,
+  orbLime = true,
 }: {
   crumbs?: Crumb[];
   kicker?: string;
@@ -46,13 +47,17 @@ export default function PageHero({
   eyebrowKey?: TKey;
   titulo?: MaybeLText;
   lead?: MaybeLText;
+  /** A política de privacidade mostra só o orbe verde. */
+  orbLime?: boolean;
 }) {
   return (
     <section className="page-hero">
-      <div
-        className="orb orb-lime orb-lg"
-        style={{ top: '-60px', right: '8%', '--orb-o': 0.3 } as CSSProperties}
-      ></div>
+      {orbLime && (
+        <div
+          className="orb orb-lime orb-lg"
+          style={{ top: '-60px', right: '10%', '--orb-o': 0.3 } as CSSProperties}
+        ></div>
+      )}
       <div
         className="orb orb-green orb-xl"
         style={{ bottom: '-200px', left: '-160px', '--orb-o': 0.35 } as CSSProperties}

@@ -13,7 +13,7 @@ const LINKS = [
   { href: '/#areas', k: 'nav.areas' },
   { href: '/#sobre', k: 'nav.sobre' },
   { href: '/#clientes', k: 'nav.clientes' },
-  { href: '/contactos', k: 'nav.contactos' },
+  { href: '/#contactos', k: 'nav.contactos' },
 ] as const;
 
 export default function Header() {
@@ -48,8 +48,8 @@ export default function Header() {
   return (
     <header className="topnav">
       <div className="wrap">
-        <Link href="/" className="brand" aria-label="Scryptus 1">
-          <Logo height={30} />
+        <Link href="/" className="brand" aria-label="Scryptus 1 — página inicial">
+          <Logo height={44} />
         </Link>
         <nav className="primary">
           {LINKS.map((link) => (
@@ -83,9 +83,6 @@ export default function Header() {
             <Tx k={link.k} />
           </Link>
         ))}
-        <Link href="/portefolio" onClick={() => setOpen(false)}>
-          <Tx k="nav.portefolio" />
-        </Link>
         {idiomas}
         <Link href="/contactos" className="btn btn-dark btn-sm" onClick={() => setOpen(false)}>
           <Tx k="nav.orcamento" />

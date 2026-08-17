@@ -10,6 +10,8 @@ export interface Secao {
   titulo: LText;
   paragrafos: LText[];
   lista: LText[];
+  /** Parágrafos que se seguem à lista. */
+  paragrafosFinais?: LText[];
 }
 
 /** Parágrafo com emails e endereços web clicáveis. */
@@ -52,6 +54,9 @@ export default function Secoes({ secoes }: { secoes: Secao[] }) {
               ))}
             </ul>
           )}
+          {(secao.paragrafosFinais ?? []).map((p, j) => (
+            <Paragrafo key={`f${j}`} v={p} />
+          ))}
         </Reveal>
       ))}
     </div>
