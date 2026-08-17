@@ -55,7 +55,9 @@ export interface Fragmento {
 }
 
 export function autoLink(texto: string): Fragmento[] {
-  const padrao = /([\w.+-]+@[\w-]+\.[\w.]+)|(https?:\/\/[^\s<)]+)/g
+  // O domínio não pode terminar em ponto, senão a pontuação da frase entra no
+  // endereço (…escrever para info@exemplo.com. → mailto:info@exemplo.com.)
+  const padrao = /([\w.+-]+@[\w-]+(?:\.[\w-]+)+)|(https?:\/\/[^\s<)]*[^\s<).,;:!?])/g
   const fragmentos: Fragmento[] = []
   let ultimo = 0
   for (const m of texto.matchAll(padrao)) {
