@@ -1,12 +1,13 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { urlFor } from '@/sanity/lib/image';
-import type { HomeImages } from '@/sanity/lib/queries';
-import { Tx } from '../i18n/Tx';
+import type { SanityHome } from '@/sanity/lib/queries';
+import { Tx, TxOr } from '../i18n/Tx';
 import { Reveal } from './motion/Reveal';
 
-export default function Hero({ data }: { data?: HomeImages['hero'] }) {
+export default function Hero({ data }: { data?: SanityHome['hero'] }) {
   const main = data?.mainImage;
   const secondary = data?.secondaryImage;
 
@@ -20,21 +21,41 @@ export default function Hero({ data }: { data?: HomeImages['hero'] }) {
       <div className="wrap">
         <div className="hero-text">
           <Reveal afterLoader variant="up" delay={0.05}>
-            <span className="eyebrow"><Tx k="hero.eyebrow" /></span>
+            <span className="eyebrow">
+              <TxOr v={data?.eyebrow} k="hero.eyebrow" />
+            </span>
           </Reveal>
           <Reveal afterLoader variant="blur-up" delay={0.18}>
-            <h1><Tx k="hero.h1a" /><span className="accent"><Tx k="hero.h1b" /></span><br /><Tx k="hero.h1c" /><span className="accent"><Tx k="hero.h1d" /></span></h1>
+            <h1>
+              <Tx k="hero.h1a" />
+              <span className="accent">
+                <Tx k="hero.h1b" />
+              </span>
+              <br />
+              <Tx k="hero.h1c" />
+              <span className="accent">
+                <Tx k="hero.h1d" />
+              </span>
+            </h1>
           </Reveal>
           <Reveal afterLoader variant="up" delay={0.34}>
-            <p className="tagline-hero"><Tx k="hero.tagline" /></p>
+            <p className="tagline-hero">
+              <TxOr v={data?.tagline} k="hero.tagline" />
+            </p>
           </Reveal>
           <Reveal afterLoader variant="up" delay={0.46}>
-            <p className="lead"><Tx k="hero.lead" /></p>
+            <p className="lead">
+              <TxOr v={data?.lead} k="hero.lead" />
+            </p>
           </Reveal>
           <Reveal afterLoader variant="up" delay={0.58}>
             <div className="cta-row">
-              <a href="#areas" className="btn btn-lime"><Tx k="hero.cta1" /></a>
-              <a href="#contactos" className="btn btn-ghost"><Tx k="hero.cta2" /></a>
+              <a href="#areas" className="btn btn-lime">
+                <Tx k="hero.cta1" />
+              </a>
+              <Link href="/contactos" className="btn btn-ghost">
+                <Tx k="hero.cta2" />
+              </Link>
             </div>
           </Reveal>
         </div>
@@ -51,7 +72,19 @@ export default function Hero({ data }: { data?: HomeImages['hero'] }) {
                   priority
                 />
               ) : (
-                <>Imagem herói<br />(formato pílula)<br /><br />Sugestão:<br />estufa em produção<br />+ folhagem tropical<br />de Cabo Verde</>
+                <>
+                  Imagem herói
+                  <br />
+                  (formato pílula)
+                  <br />
+                  <br />
+                  Sugestão:
+                  <br />
+                  estufa em produção
+                  <br />+ folhagem tropical
+                  <br />
+                  de Cabo Verde
+                </>
               )}
               <div className="hero-pill-small">
                 {secondary?.asset ? (
@@ -62,7 +95,11 @@ export default function Hero({ data }: { data?: HomeImages['hero'] }) {
                     sizes="140px"
                   />
                 ) : (
-                  <>Imagem secundária<br />produto em cena</>
+                  <>
+                    Imagem secundária
+                    <br />
+                    produto em cena
+                  </>
                 )}
               </div>
             </div>
