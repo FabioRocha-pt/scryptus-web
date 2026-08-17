@@ -139,6 +139,12 @@ export const secaoTexto = defineType({
       type: 'array',
       of: [{type: 'localeString'}],
     }),
+    defineField({
+      name: 'paragrafosFinais',
+      title: 'Parágrafos depois da lista (opcional)',
+      type: 'array',
+      of: [{type: 'localeText'}],
+    }),
   ],
   preview: {
     select: {titulo: 'titulo.pt'},
