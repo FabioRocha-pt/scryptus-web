@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import { Carlito } from "next/font/google";
 import localFont from "next/font/local";
-import { SanityLive } from "@/sanity/lib/live";
-import { SITE_URL } from "./site-config";
-import "./globals.css";
+import { SITE_URL } from "./content/site";
 
 // 1. Carregar a Delicious Heavy a partir da pasta public
 const deliciousHeavy = localFont({
@@ -14,37 +12,41 @@ const deliciousHeavy = localFont({
 });
 
 // 2. Carregar a Carlito (texto corrido) otimizada pelo Google Fonts
-const carlito = Carlito({ 
-  subsets: ["latin"], 
+const carlito = Carlito({
+  subsets: ["latin"],
   weight: ["400", "700"],
   style: ['normal', 'italic'],
-  variable: "--body" 
+  variable: "--body"
 });
-
-const DESCRIPTION =
-  "Plataforma integrada de comércio internacional em Cabo Verde.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "Scryptus 1",
-  description: DESCRIPTION,
-  alternates: { canonical: "/" },
-  // Declarado aqui uma só vez: todas as rotas herdam og:image e og:url, e podem
-  // sobrepor-se com caminhos relativos em vez de URLs absolutos espalhados.
+  title: {
+    default: "Scryptus 1 — O seu parceiro de negócios em Cabo Verde",
+    template: "%s — Scryptus 1",
+  },
+  description:
+    "Plataforma integrada de comércio internacional, apoio técnico e consultoria na Praia, Cabo Verde. Oito áreas de negócio: gráfica, agricultura, têxteis, EPI, mobiliário, informática, museus e outras áreas.",
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: "/favicon.png",
+  },
   openGraph: {
     type: "website",
     siteName: "Scryptus 1",
     locale: "pt_PT",
-    title: "Scryptus 1",
-    description: DESCRIPTION,
-    url: "/",
-    images: ["/og-imagem.jpg"],
+    url: SITE_URL,
+    images: [{ url: "/og-imagem.jpg", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Scryptus 1",
-    description: DESCRIPTION,
     images: ["/og-imagem.jpg"],
+  },
+  other: {
+    "theme-color": "#2d4f3a",
   },
 };
 
@@ -56,10 +58,7 @@ export default function RootLayout({
   return (
     // 3. Injetar as duas fontes globalmente na tag HTML
     <html lang="pt" className={`${deliciousHeavy.variable} ${carlito.variable}`}>
-      <body>
-        {children}
-        <SanityLive />
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

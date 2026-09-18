@@ -32,6 +32,10 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+!.env.example
+
+# material de origem (o conteúdo já está na app, em app/content)
+scryptus-site.zip
 
 # vercel
 .vercel
