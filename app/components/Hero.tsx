@@ -19,19 +19,19 @@ export default function Hero({ data }: { data?: HomeImages['hero'] }) {
 
       <div className="wrap">
         <div className="hero-text">
-          <Reveal afterLoader variant="up" delay={0.05}>
+          <Reveal afterLoader variant="up" delay={0.04}>
             <span className="eyebrow"><Tx k="hero.eyebrow" /></span>
           </Reveal>
-          <Reveal afterLoader variant="blur-up" delay={0.18}>
+          <Reveal afterLoader variant="blur-up" delay={0.12}>
             <h1><Tx k="hero.h1a" /><span className="accent"><Tx k="hero.h1b" /></span><br /><Tx k="hero.h1c" /><span className="accent"><Tx k="hero.h1d" /></span></h1>
           </Reveal>
-          <Reveal afterLoader variant="up" delay={0.34}>
+          <Reveal afterLoader variant="up" delay={0.2}>
             <p className="tagline-hero"><Tx k="hero.tagline" /></p>
           </Reveal>
-          <Reveal afterLoader variant="up" delay={0.46}>
+          <Reveal afterLoader variant="up" delay={0.28}>
             <p className="lead"><Tx k="hero.lead" /></p>
           </Reveal>
-          <Reveal afterLoader variant="up" delay={0.58}>
+          <Reveal afterLoader variant="up" delay={0.36}>
             <div className="cta-row">
               <a href="#areas" className="btn btn-lime"><Tx k="hero.cta1" /></a>
               <a href="#contactos" className="btn btn-ghost"><Tx k="hero.cta2" /></a>
@@ -40,12 +40,14 @@ export default function Hero({ data }: { data?: HomeImages['hero'] }) {
         </div>
 
         <div className="hero-media">
-          <Reveal afterLoader variant="pill" delay={0.35} duration={1.1}>
+          <Reveal afterLoader variant="pill" delay={0.22} duration={0.75}>
             <div className="hero-pill">
               {main?.asset ? (
                 <Image
                   src={urlFor(main).width(680).height(1080).fit('crop').auto('format').url()}
-                  alt={main.alt ?? 'Scryptus 1'}
+                  // O alt vem do Sanity; este recurso é só a rede de segurança.
+                  // "Scryptus 1" não descreve nada — nem para leitor de ecrã, nem para pesquisa.
+                  alt={main.alt ?? 'Estufa em produção em Cabo Verde, com folhagem tropical em primeiro plano'}
                   fill
                   sizes="(max-width: 960px) 280px, 340px"
                   priority

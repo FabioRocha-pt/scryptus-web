@@ -4,8 +4,37 @@ import type { CSSProperties } from 'react';
 import { Tx, useT } from '../i18n/Tx';
 import { Reveal } from './motion/Reveal';
 
+const WHATSAPP_URL = 'https://wa.me/2389551020';
+const EMAIL = 'info@scryptus1-caboverde.com';
+// Pesquisa por morada, que é estável sem conhecer as coordenadas. Se a CAVEX enviar
+// o Place ID da loja, trocar por uma ligação directa à ficha do Google Maps.
+const MAPA_URL =
+  'https://www.google.com/maps/search/?api=1&query=Rua+da+Cruz+Vermelha%2C+Praia%2C+Santiago%2C+Cabo+Verde';
+
+// Endereços por confirmar com a CAVEX. Enquanto `href` for null a ligação não é
+// desenhada — mais vale não ter ícone do que ter um que não vai a lado nenhum.
+// Se a Scryptus não tiver presença nas redes, esta lista fica como está.
+const SOCIAIS: { nome: string; href: string | null; d: string }[] = [
+  {
+    nome: 'Facebook',
+    href: null,
+    d: 'M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4v-8.5Z',
+  },
+  {
+    nome: 'Instagram',
+    href: null,
+    d: 'M12 2c2.717 0 3.056.01 4.122.06 1.065.05 1.79.217 2.428.465.66.254 1.216.598 1.772 1.153a4.908 4.908 0 0 1 1.153 1.772c.247.637.415 1.363.465 2.428.047 1.066.06 1.405.06 4.122 0 2.717-.01 3.056-.06 4.122-.05 1.065-.218 1.79-.465 2.428a4.883 4.883 0 0 1-1.153 1.772 4.915 4.915 0 0 1-1.772 1.153c-.637.247-1.363.415-2.428.465-1.066.047-1.405.06-4.122.06-2.717 0-3.056-.01-4.122-.06-1.065-.05-1.79-.218-2.428-.465a4.89 4.89 0 0 1-1.772-1.153 4.904 4.904 0 0 1-1.153-1.772c-.248-.637-.415-1.363-.465-2.428C2.013 15.056 2 14.717 2 12c0-2.717.01-3.056.06-4.122.05-1.066.217-1.79.465-2.428a4.88 4.88 0 0 1 1.153-1.772A4.897 4.897 0 0 1 5.45 2.525c.638-.248 1.362-.415 2.428-.465C8.944 2.013 9.283 2 12 2Zm0 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm6.5-.25a1.25 1.25 0 0 0-2.5 0 1.25 1.25 0 0 0 2.5 0ZM12 9a3 3 0 1 1 0 6 3 3 0 0 1 0-6Z',
+  },
+  {
+    nome: 'LinkedIn',
+    href: null,
+    d: 'M6.94 5a2 2 0 1 1-4-.002 2 2 0 0 1 4 .002ZM7 8.48H3V21h4V8.48Zm6.32 0H9.34V21h3.94v-6.57c0-3.66 4.77-4 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.72-2.91l.04-1.68Z',
+  },
+];
+
 export default function Footer() {
   const t = useT();
+  const sociaisAtivas = SOCIAIS.filter((s) => s.href);
 
   return (
     <>
@@ -24,8 +53,8 @@ export default function Footer() {
           </Reveal>
           <Reveal variant="zoom" delay={0.34}>
             <div className="cta-row">
-              <a href="#" className="btn btn-lime">WhatsApp · (+238) 955 10 20</a>
-              <a href="mailto:#" className="btn btn-ghost"><Tx k="cta.email" /></a>
+              <a href={WHATSAPP_URL} className="btn btn-lime" target="_blank" rel="noopener noreferrer">WhatsApp · (+238) 955 10 20</a>
+              <a href={`mailto:${EMAIL}`} className="btn btn-ghost"><Tx k="cta.email" /></a>
               <a href="tel:+2382647607" className="btn btn-ghost">(+238) 264 76 07</a>
             </div>
           </Reveal>
@@ -53,8 +82,13 @@ export default function Footer() {
                 </svg>
               </div>
               <p>Comercialização de Papéis<br />e Produtos Gráficos, Lda.</p>
-              <p style={{ marginTop: '16px' }}>Rua da Cruz Vermelha, R/C<br />Praia, Santiago, Cabo Verde</p>
-              <p style={{ marginTop: '16px' }}>(+238) 264 76 07<br />info@scryptus1-caboverde.com</p>
+              <p style={{ marginTop: '16px' }}>
+                <a href={MAPA_URL} target="_blank" rel="noopener noreferrer">Rua da Cruz Vermelha, R/C<br />Praia, Santiago, Cabo Verde</a>
+              </p>
+              <p style={{ marginTop: '16px' }}>
+                <a href="tel:+2382647607">(+238) 264 76 07</a><br />
+                <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
+              </p>
             </div>
             <div>
               <h4><Tx k="footer.nav" /></h4>
@@ -70,7 +104,7 @@ export default function Footer() {
               <p><Tx k="footer.dias" /></p>
               <p>08h00 – 13h00</p>
               <p>14h00 – 17h00</p>
-              <p style={{ marginTop: '16px' }}><a href="#" style={{ color: 'var(--lime)', fontWeight: 700 }}><Tx k="footer.mapa" /></a></p>
+              <p style={{ marginTop: '16px' }}><a href={MAPA_URL} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--lime)', fontWeight: 700 }}><Tx k="footer.mapa" /></a></p>
             </div>
             <div>
               <h4>Newsletter</h4>
@@ -81,16 +115,33 @@ export default function Footer() {
           </div>
           <div className="bottom">
             <span><Tx k="footer.rights" /></span>
-            <div className="socials">
-              <a href="#" aria-label="Facebook">f</a>
-              <a href="#" aria-label="Instagram">ig</a>
-              <a href="#" aria-label="LinkedIn">in</a>
-            </div>
+            {sociaisAtivas.length > 0 && (
+              <div className="socials">
+                {sociaisAtivas.map((s) => (
+                  <a key={s.nome} href={s.href!} aria-label={s.nome} target="_blank" rel="noopener noreferrer">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
+                      <path d={s.d} />
+                    </svg>
+                  </a>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </footer>
 
-      <a className="whatsapp" href="#" aria-label="WhatsApp">WA</a>
+      <a
+        className="whatsapp"
+        href={WHATSAPP_URL}
+        aria-label="Falar no WhatsApp"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor" aria-hidden="true">
+          <path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.65.08-.3-.15-1.26-.47-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.41-.07-.13-.27-.2-.57-.35Z" />
+          <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.13a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.36c0-4.54 3.7-8.24 8.24-8.24a8.18 8.18 0 0 1 5.82 2.42 8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.69 8.23-8.23 8.23Z" />
+        </svg>
+      </a>
     </>
   );
 }

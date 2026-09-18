@@ -4,7 +4,9 @@ import type { CSSProperties } from 'react';
 import { Tx } from '../i18n/Tx';
 import { Reveal, RevealGroup, RevealItem } from './motion/Reveal';
 
-const CLIENTES = ['BCV', 'BCA', 'BAI CV', 'Min. Agricultura', 'CMP', 'CM Mindelo', 'INCV', 'CV Telecom', 'ASA', 'IEFP', 'Correios CV', '+ 14'];
+// Seleção fixa, sem caixa "+N": a escala passa a ser dita na linha sob a grelha
+// (ver 'clientes.mais'), que não se confunde com um item clicável.
+const CLIENTES = ['BCV', 'BCA', 'BAI CV', 'Min. Agricultura', 'CMP', 'CM Mindelo', 'INCV', 'CV Telecom', 'ASA', 'IEFP', 'Correios CV', 'INIDA'];
 
 export default function Clientes() {
   return (
@@ -26,6 +28,9 @@ export default function Clientes() {
             </RevealItem>
           ))}
         </RevealGroup>
+        <Reveal variant="up" delay={0.1}>
+          <p className="clients-more"><Tx k="clientes.mais" /></p>
+        </Reveal>
       </div>
     </section>
   );

@@ -188,6 +188,7 @@ section.block { padding: 120px 0; position: relative; overflow: hidden }
 .clients-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; position: relative; z-index: 3 }
 .client { aspect-ratio: 5/3; background: #fff; border-radius: var(--radius-soft); display: flex; align-items: center; justify-content: center; font-family: var(--body); font-weight: 700; font-size: 13px; color: var(--ink-mute); letter-spacing: 0.04em; border: 0.5px solid var(--line); transition: all 0.18s }
 .client:hover { color: var(--green-700); border-color: var(--green-300) }
+.clients-more { font-family: var(--body); font-size: 14px; color: var(--ink-mute); letter-spacing: 0.01em; margin-top: 20px; position: relative; z-index: 3 }
 
 .cta-block { position: relative; color: #fff; text-align: center; padding: 140px 0; overflow: hidden; background: var(--gradient-deep) }
 .cta-block::before { content: ""; position: absolute; top: -1px; left: 0; right: 0; height: 100px; background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 100' preserveAspectRatio='none'><path d='M0,50 C360,100 720,0 1080,50 C1260,80 1380,40 1440,60 L1440,0 L0,0 Z' fill='%23fafaf7'/></svg>") center top/100% 100% no-repeat; z-index: 2 }
@@ -204,6 +205,8 @@ footer h4 { color: #fff; font-family: var(--body); font-weight: 700; font-size: 
 .brand-foot { display: inline-flex; align-items: center; height: 36px; margin-bottom: 20px; color: #fff }
 .brand-foot svg { height: 34px; width: auto; display: block }
 footer p { margin-bottom: 8px; line-height: 1.65 }
+footer p a { color: inherit; transition: color 0.18s }
+footer p a:hover { color: var(--lime) }
 footer ul { list-style: none }
 footer ul li { margin-bottom: 10px }
 footer ul li a:hover { color: var(--lime) }

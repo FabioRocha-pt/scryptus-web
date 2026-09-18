@@ -8,11 +8,20 @@ export const hero = defineType({
     defineField({
       name: 'mainImage',
       title: 'Imagem principal (pílula grande)',
-      description: 'Sugestão: estufa em produção + folhagem tropical de Cabo Verde.',
+      description:
+        'Sugestão: estufa em produção + folhagem tropical de Cabo Verde. ' +
+        'Carregar o original em alta resolução (mínimo 680×1080 px): a imagem é ' +
+        'servida a 2× em ecrãs retina e um ficheiro pequeno fica visivelmente suave.',
       type: 'image',
       options: {hotspot: true},
       fields: [
-        defineField({name: 'alt', title: 'Texto alternativo', type: 'string'}),
+        defineField({
+          name: 'alt',
+          title: 'Texto alternativo',
+          description: 'Descrever o que se vê na imagem — serve leitores de ecrã e pesquisa.',
+          type: 'string',
+          validation: (rule) => rule.required(),
+        }),
       ],
     }),
     defineField({

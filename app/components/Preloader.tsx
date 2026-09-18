@@ -5,7 +5,10 @@ import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { markLoaderDone } from './motion/loader-store';
 import { LOGO_VIEWBOX, SWOOSH_PATHS, WORDMARK_PATHS } from './logo-paths';
 
-const HOLD_MS = 2250;
+// Encurtado de 2250ms: com as revelações do hero por cima, a entrada demorava perto
+// de três segundos a assentar e quem percorria a página depressa via texto esbatido
+// e cartões por aparecer — lia-se como bug, não como animação.
+const HOLD_MS = 1300;
 const EASE_OUT: [number, number, number, number] = [0.22, 1, 0.36, 1];
 const EASE_CURTAIN: [number, number, number, number] = [0.87, 0, 0.13, 1];
 
@@ -50,7 +53,7 @@ export default function Preloader() {
               className="preloader-logo"
               initial={reduceMotion ? false : { scale: 0.94, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 1.2, ease: EASE_OUT }}
+              transition={{ duration: 0.7, ease: EASE_OUT }}
             >
               {SWOOSH_PATHS.map((d, i) => (
                 <g key={i}>
@@ -65,11 +68,11 @@ export default function Preloader() {
                       animate={{ pathLength: 1, opacity: 0 }}
                       transition={{
                         pathLength: {
-                          delay: 0.15 + i * 0.2,
-                          duration: 1,
+                          delay: 0.08 + i * 0.12,
+                          duration: 0.55,
                           ease: 'easeInOut',
                         },
-                        opacity: { delay: 1.5, duration: 0.4 },
+                        opacity: { delay: 0.75, duration: 0.25 },
                       }}
                     />
                   )}
@@ -78,7 +81,7 @@ export default function Preloader() {
                     fill="var(--lime)"
                     initial={reduceMotion ? false : { opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    transition={{ delay: 0.9 + i * 0.15, duration: 0.6 }}
+                    transition={{ delay: 0.5 + i * 0.09, duration: 0.4 }}
                   />
                 </g>
               ))}
@@ -91,7 +94,7 @@ export default function Preloader() {
                   clipRule={p.evenodd ? 'evenodd' : undefined}
                   initial={reduceMotion ? false : { opacity: 0, y: 14 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 1.05 + i * 0.05, duration: 0.55, ease: EASE_OUT }}
+                  transition={{ delay: 0.58 + i * 0.03, duration: 0.38, ease: EASE_OUT }}
                 />
               ))}
             </motion.svg>
@@ -100,7 +103,7 @@ export default function Preloader() {
               className="preloader-tagline"
               initial={reduceMotion ? false : { opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.45, duration: 0.6, ease: EASE_OUT }}
+              transition={{ delay: 0.82, duration: 0.4, ease: EASE_OUT }}
             >
               O seu parceiro de negócios
             </motion.p>
@@ -111,8 +114,8 @@ export default function Preloader() {
                 initial={reduceMotion ? false : { scaleX: 0 }}
                 animate={{ scaleX: 1 }}
                 transition={{
-                  delay: 0.15,
-                  duration: reduceMotion ? 0.6 : (HOLD_MS - 250) / 1000,
+                  delay: 0.1,
+                  duration: reduceMotion ? 0.5 : (HOLD_MS - 200) / 1000,
                   ease: 'easeInOut',
                 }}
               />

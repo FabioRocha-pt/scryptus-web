@@ -83,6 +83,9 @@ const pt = {
   'clientes.h2a': 'Bancos, ministérios e ',
   'clientes.h2b': 'câmaras municipais.',
   'clientes.intro': 'Um portefólio construído ao longo de mais de uma década, em projetos públicos e privados — em todas as ilhas.',
+  // Formulação de escala aprovada pela Marlène: linha discreta sob a grelha, não uma
+  // caixa extra (o "+14" lia-se como item clicável). Número por confirmar com a CAVEX.
+  'clientes.mais': 'e mais de 20 outras entidades em todas as ilhas',
 
   // CTA
   'cta.eyebrow': 'Falar connosco',
@@ -179,6 +182,7 @@ const en: Record<TKey, string> = {
   'clientes.h2a': 'Banks, ministries and ',
   'clientes.h2b': 'municipalities.',
   'clientes.intro': 'A portfolio built over more than a decade, on public and private projects — across every island.',
+  'clientes.mais': 'and over 20 other organisations across every island',
 
   'cta.eyebrow': 'Talk to us',
   'cta.h2a': 'Have a ',
@@ -271,6 +275,7 @@ const fr: Record<TKey, string> = {
   'clientes.h2a': 'Banques, ministères et ',
   'clientes.h2b': 'municipalités.',
   'clientes.intro': 'Un portfolio bâti sur plus d’une décennie, à travers des projets publics et privés — sur toutes les îles.',
+  'clientes.mais': 'et plus de 20 autres entités sur toutes les îles',
 
   'cta.eyebrow': 'Contactez-nous',
   'cta.h2a': 'Un ',

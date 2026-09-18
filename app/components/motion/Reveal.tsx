@@ -34,6 +34,11 @@ const VISIBLE: Record<string, number | string> = {
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
+// Margem positiva: o observer dispara antes de o elemento entrar no ecrã, para que
+// quem percorre a página depressa não apanhe cartões a meio de aparecer. Era o efeito
+// que se lia como bug — a margem negativa obrigava o elemento a entrar 12% no ecrã.
+const VIEWPORT = { once: true, margin: '0px 0px 140px 0px' } as const;
+
 function useLoaderReady() {
   return useSyncExternalStore(subscribeLoader, isLoaderDone, () => false);
 }
@@ -53,7 +58,7 @@ export function Reveal({
   children,
   variant = 'up',
   delay = 0,
-  duration = 0.8,
+  duration = 0.55,
   afterLoader = false,
   className,
   style,
@@ -91,7 +96,7 @@ export function Reveal({
       style={style}
       initial={HIDDEN[variant]}
       whileInView={VISIBLE}
-      viewport={{ once: true, margin: '-12% 0px' }}
+      viewport={VIEWPORT}
       transition={transition}
     >
       {children}
@@ -116,7 +121,7 @@ const groupVariants: Variants = {
 /** Contentor que revela os RevealItem filhos em cascata ao entrar no viewport. */
 export function RevealGroup({
   children,
-  stagger = 0.09,
+  stagger = 0.055,
   delay = 0,
   className,
   style,
@@ -137,7 +142,7 @@ export function RevealGroup({
       style={style}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: '-10% 0px' }}
+      viewport={VIEWPORT}
       variants={groupVariants}
       transition={{ staggerChildren: stagger, delayChildren: delay }}
     >
@@ -157,7 +162,7 @@ interface RevealItemProps {
 export function RevealItem({
   children,
   variant = 'up',
-  duration = 0.7,
+  duration = 0.5,
   className,
   style,
 }: RevealItemProps) {
