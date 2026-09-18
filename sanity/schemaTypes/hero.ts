@@ -12,7 +12,11 @@ export const hero = defineType({
     defineField({
       name: 'mainImage',
       title: 'Imagem principal (pílula grande)',
-      description: 'Vertical, 2:3. Sugestão: estufa em produção + folhagem tropical de Cabo Verde.',
+      description:
+        'Vertical, 2:3. Sugestão: estufa em produção + folhagem tropical de Cabo Verde. ' +
+        'Carregar o original com pelo menos 680×1080 px: a imagem é servida a 2× em ' +
+        'ecrãs retina e um ficheiro mais pequeno fica visivelmente suave — o Sanity ' +
+        'reduz imagens, mas nunca as amplia.',
       type: 'figura',
       group: 'imagens',
     }),

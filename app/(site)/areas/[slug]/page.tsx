@@ -66,7 +66,9 @@ export default async function AreaPage({ params }: { params: Promise<{ slug: str
   if (!area) notFound();
 
   const todas = resolveAreas(todosDocs);
-  const outras = todas.filter((a) => a.slug !== area.slug).slice(0, 4);
+  // Todas as restantes, sem corte: o título diz «oito áreas» e mostrar só quatro
+  // contradizia-o. A grelha .related usa colunas automáticas e parte para segunda linha.
+  const outras = todas.filter((a) => a.slug !== area.slug);
   const site = resolveSite(settings);
   const nome = pick('pt', area.tituloCurto);
 

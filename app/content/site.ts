@@ -47,6 +47,16 @@ export const SITE_URL = (
   process.env.NEXT_PUBLIC_SITE_URL || 'https://www.scryptus1-caboverde.com'
 ).replace(/\/$/, '')
 
+/**
+ * Só o domínio definitivo é indexável.
+ *
+ * Enquanto NEXT_PUBLIC_SITE_URL apontar para um domínio de revisão (duckdns,
+ * pré-produção), o robots.txt fecha tudo e o next.config serve `X-Robots-Tag:
+ * noindex` — assim o site de revisão não chega ao Google nem compete nos
+ * resultados com o domínio final quando este entrar.
+ */
+export const IS_PUBLIC_DOMAIN = SITE_URL.includes('scryptus1-caboverde.com')
+
 /** `(+238) 264 76 07` → `tel:+2382647607` */
 export function telHref(numero: string): string {
   const digits = numero.replace(/[^\d+]/g, '')

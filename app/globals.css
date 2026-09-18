@@ -338,7 +338,9 @@ section[id], footer[id] { scroll-margin-top: 104px }
 .area-media { border-radius: var(--radius-card) var(--radius-card) 120px 120px; overflow: hidden; background: linear-gradient(160deg, var(--green-300) 0%, var(--green-500) 55%, var(--green-700) 100%); aspect-ratio: 16/7; display: flex; align-items: center; justify-content: center; text-align: center; color: rgba(255, 255, 255, 0.9); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; line-height: 1.7; margin-bottom: 60px; position: relative; z-index: 3 }
 .area-media img { object-fit: cover }
 
-.related { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; position: relative; z-index: 3 }
+/* Colunas automáticas: são sete cartões, e em repeat(4, 1fr) ficava 4+3 com um
+   vazio à direita. Assim distribuem-se sozinhos em qualquer largura. */
+.related { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; position: relative; z-index: 3 }
 .rel { background: #fff; border: 0.5px solid var(--line); border-radius: var(--radius-soft); padding: 20px 20px 22px; transition: all 0.18s; display: block; height: 100% }
 .rel:hover { border-color: var(--green-300); transform: translateY(-3px); box-shadow: 0 18px 44px -20px rgba(45, 79, 58, 0.18) }
 .rel .n { font-family: var(--display); font-size: 13px; color: var(--green-600); display: block; margin-bottom: 7px }

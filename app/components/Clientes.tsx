@@ -61,6 +61,11 @@ export default function Clientes({ clientes }: { clientes: ClienteItem[] }) {
             </RevealItem>
           ))}
         </RevealGroup>
+        <Reveal variant="up" delay={0.1}>
+          <p className="clients-more">
+            <Tx k="clientes.mais" />
+          </p>
+        </Reveal>
       </div>
     </section>
   );

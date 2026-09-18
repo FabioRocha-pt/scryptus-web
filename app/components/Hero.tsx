@@ -19,12 +19,12 @@ export default function Hero({ data }: { data?: SanityHome['hero'] }) {
 
       <div className="wrap">
         <div className="hero-text">
-          <Reveal afterLoader variant="up" delay={0.05}>
+          <Reveal afterLoader variant="up" delay={0.04}>
             <span className="eyebrow">
               <TxOr v={data?.eyebrow} k="hero.eyebrow" />
             </span>
           </Reveal>
-          <Reveal afterLoader variant="blur-up" delay={0.18}>
+          <Reveal afterLoader variant="blur-up" delay={0.12}>
             <h1>
               <Tx k="hero.h1a" />
               <span className="accent">
@@ -37,17 +37,17 @@ export default function Hero({ data }: { data?: SanityHome['hero'] }) {
               </span>
             </h1>
           </Reveal>
-          <Reveal afterLoader variant="up" delay={0.34}>
+          <Reveal afterLoader variant="up" delay={0.2}>
             <p className="tagline-hero">
               <TxOr v={data?.tagline} k="hero.tagline" />
             </p>
           </Reveal>
-          <Reveal afterLoader variant="up" delay={0.46}>
+          <Reveal afterLoader variant="up" delay={0.28}>
             <p className="lead">
               <TxOr v={data?.lead} k="hero.lead" />
             </p>
           </Reveal>
-          <Reveal afterLoader variant="up" delay={0.58}>
+          <Reveal afterLoader variant="up" delay={0.36}>
             <div className="cta-row">
               <a href="#areas" className="btn btn-lime">
                 <Tx k="hero.cta1" />
@@ -60,12 +60,12 @@ export default function Hero({ data }: { data?: SanityHome['hero'] }) {
         </div>
 
         <div className="hero-media">
-          <Reveal afterLoader variant="pill" delay={0.35} duration={1.1}>
+          <Reveal afterLoader variant="pill" delay={0.22} duration={0.75}>
             <div className="hero-pill">
               {main?.asset ? (
                 <Image
                   src={urlFor(main).width(680).height(1080).fit('crop').auto('format').url()}
-                  alt={main.alt ?? 'Scryptus 1'}
+                  alt={main.alt ?? 'Estufa em produção em Cabo Verde, com folhagem tropical em primeiro plano'}
                   fill
                   sizes="(max-width: 960px) 280px, 340px"
                   priority

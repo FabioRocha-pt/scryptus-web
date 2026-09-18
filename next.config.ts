@@ -18,6 +18,12 @@ const LEGADO: Record<string, string> = {
   "/outras-areas.html": "/areas/outras-areas",
 };
 
+// Duplicado de IS_PUBLIC_DOMAIN: o next.config é avaliado fora do bundle da app
+// e não pode importar de app/content/site.ts. Manter as duas condições iguais.
+const isPublicDomain = (
+  process.env.NEXT_PUBLIC_SITE_URL || "https://www.scryptus1-caboverde.com"
+).includes("scryptus1-caboverde.com");
+
 const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
@@ -34,6 +40,18 @@ const nextConfig: NextConfig = {
       destination,
       permanent: true,
     }));
+  },
+  // Mesma condição que o app/robots.ts (ver IS_PUBLIC_DOMAIN em app/content/site.ts).
+  // O robots.txt é um pedido que qualquer um ignora; é o cabeçalho que de facto
+  // impede a indexação do site de revisão, mesmo que alguém partilhe o link.
+  async headers() {
+    if (isPublicDomain) return [];
+    return [
+      {
+        source: "/:path*",
+        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
+      },
+    ];
   },
 };
 
