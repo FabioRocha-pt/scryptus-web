@@ -16,6 +16,12 @@ export interface ClienteItem {
   local?: ClienteContent | null;
 }
 
+/** image-<id>-<largura>x<altura>-<ext> → dimensões reais do ficheiro. */
+function dimensoes(ref: string) {
+  const m = ref.match(/-(\d+)x(\d+)-/);
+  return m ? { width: +m[1], height: +m[2] } : { width: 124, height: 52 };
+}
+
 export default function Clientes({ clientes }: { clientes: ClienteItem[] }) {
   return (
     <section className="block bg-paper-2" id="clientes">
@@ -55,11 +61,13 @@ export default function Clientes({ clientes }: { clientes: ClienteItem[] }) {
                 title={cliente.nome}
               >
                 {cliente.logo?.asset ? (
+                  // Só a largura: com largura e altura, o Sanity recorta o logótipo para
+                  // essa proporção. As dimensões reais vêm da referência do asset.
                   <Image
-                    src={urlFor(cliente.logo).width(248).height(104).fit('max').auto('format').url()}
+                    src={urlFor(cliente.logo).width(248).fit('max').auto('format').url()}
                     alt={cliente.logo.alt ?? cliente.nome}
-                    width={124}
-                    height={52}
+                    {...dimensoes(cliente.logo.asset._ref)}
+                    sizes="124px"
                   />
                 ) : cliente.local ? (
                   <Image
