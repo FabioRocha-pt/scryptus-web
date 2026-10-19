@@ -72,6 +72,11 @@ export default function Footer({ site, areas }: { site: SiteInfo; areas: FooterA
             <p style={{ marginTop: '16px' }}>
               <Linhas texto={site.morada} />
             </p>
+            <p style={{ marginTop: '6px' }}>
+              <a href={site.mapaUrl} target="_blank" rel="noopener noreferrer">
+                <Tx k="footer.mapa" />
+              </a>
+            </p>
             <p style={{ marginTop: '16px' }}>
               <a href={site.telHref}>{site.telefone}</a>
               <br />

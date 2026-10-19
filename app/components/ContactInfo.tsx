@@ -71,6 +71,10 @@ export default function ContactInfo({ site, passos }: { site: SiteInfo; passos: 
             </span>
             <span className="v">
               <Linhas texto={site.morada} />
+              <br />
+              <a href={site.mapaUrl} target="_blank" rel="noopener noreferrer">
+                <Tx k="footer.mapa" />
+              </a>
             </span>
           </div>
           <div className="info-row">

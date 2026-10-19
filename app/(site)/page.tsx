@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { fetchContent } from '@/sanity/lib/fetchContent';
 import {
   HOME_QUERY,
@@ -15,6 +16,10 @@ import Sobre from '../components/Sobre';
 import { resolveClientes } from '../content/clientes';
 import { resolveAreas } from '../content/resolveAreas';
 import { resolveSite } from '../content/site';
+
+export const metadata: Metadata = {
+  alternates: { canonical: '/' },
+};
 
 export default async function Home() {
   const [home, settings] = await Promise.all([

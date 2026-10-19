@@ -9,11 +9,18 @@ import PageHero from '../../components/PageHero';
 import Secoes from '../../components/Secoes';
 import { PRIVACIDADE_DEFAULTS as D } from '../../content/paginas';
 import { hasText } from '../../i18n/localize';
+import { OG_BASE } from '../../content/seo';
 
 export const metadata: Metadata = {
   title: 'Política de privacidade',
   description: D.seoDescription,
   alternates: { canonical: '/privacidade' },
+  openGraph: {
+    ...OG_BASE,
+    title: 'Política de privacidade — Scryptus 1',
+    description: D.seoDescription,
+    url: '/privacidade',
+  },
 };
 
 const txt = (doc: LText | null | undefined, defeito: LText): LText =>

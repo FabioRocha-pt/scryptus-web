@@ -194,7 +194,6 @@ export const EMPRESA_DEFAULTS = {
     {etiqueta: 'Cultura', nome: 'CulTur'},
     {etiqueta: 'Cabo Verde', nome: 'Scryptus 1'},
   ],
-  imagemLegenda: 'Foto do armazém\n(Rua da Cruz Vermelha)',
   seoDescription:
     'A Scryptus 1 é uma plataforma de comércio internacional, apoio técnico e consultoria sediada na Praia, Cabo Verde, do Grupo CAVEX.',
 }

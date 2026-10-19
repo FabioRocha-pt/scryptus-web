@@ -7,6 +7,7 @@ import { urlFor } from '@/sanity/lib/image';
 import type { SanityHome } from '@/sanity/lib/queries';
 import type { TKey } from '../i18n/translations';
 import { Tx, TxL, TxOr } from '../i18n/Tx';
+import { FOTO_ARMAZEM } from '../content/imagens';
 import { Reveal, RevealGroup, RevealItem } from './motion/Reveal';
 
 const NUMEROS_DEFEITO: { valor: string; legendaKey: TKey }[] = [
@@ -29,20 +30,16 @@ export default function Sobre({ data }: { data?: SanityHome['sobre'] }) {
         <div className="about-grid">
           <Reveal variant="left" duration={1}>
             <div className="about-pill">
-              {image?.asset ? (
-                <Image
-                  src={urlFor(image).width(680).height(1100).fit('crop').auto('format').url()}
-                  alt={image.alt ?? 'Armazém da Scryptus 1 na Praia'}
-                  fill
-                  sizes="(max-width: 960px) 340px, 40vw"
-                />
-              ) : (
-                <>
-                  Foto do armazém
-                  <br />
-                  (Rua da Cruz Vermelha)
-                </>
-              )}
+              <Image
+                src={
+                  image?.asset
+                    ? urlFor(image).width(680).height(1100).fit('crop').auto('format').url()
+                    : FOTO_ARMAZEM.src
+                }
+                alt={(image?.asset && image.alt) || FOTO_ARMAZEM.alt}
+                fill
+                sizes="(max-width: 960px) 340px, 40vw"
+              />
             </div>
           </Reveal>
           <Reveal variant="right" delay={0.15} className="about-text">

@@ -4,14 +4,24 @@ import Image from 'next/image';
 import { urlFor } from '@/sanity/lib/image';
 import type { SanityHome } from '@/sanity/lib/queries';
 import { Tx, TxOr } from '../i18n/Tx';
+import { FOTO_HERO } from '../content/imagens';
 import { Reveal } from './motion/Reveal';
 
+/**
+ * Herói da página inicial: a fotografia ocupa a faixa toda, com um degradé por
+ * cima para o texto continuar legível. Uma imagem no Sanity sobrepõe-se à local.
+ */
 export default function Hero({ data }: { data?: SanityHome['hero'] }) {
   const main = data?.mainImage;
-  const secondary = data?.secondaryImage;
+  // O original tem 1920 px: em retina não chega ao dobro da janela, e aceita-se 1920 como teto.
+  const src = main?.asset
+    ? urlFor(main).width(1920).fit('max').auto('format').url()
+    : FOTO_HERO.src;
+  const alt = (main?.asset && main.alt) || FOTO_HERO.alt;
 
   return (
-    <section className="hero">
+    <section className="hero has-bg">
+      <Image className="hero-bg" src={src} alt={alt} fill sizes="100vw" priority />
       <div className="orb orb-lime orb-xl" style={{ top: '-100px', left: '-150px' }}></div>
       <div className="orb orb-green orb-lg" style={{ bottom: '-80px', right: '10%' }}></div>
       <div className="orb orb-lime orb-md" style={{ top: '30%', right: '38%' }}></div>
@@ -55,52 +65,6 @@ export default function Hero({ data }: { data?: SanityHome['hero'] }) {
               <a href="#contactos" className="btn btn-ghost">
                 <Tx k="hero.cta2" />
               </a>
-            </div>
-          </Reveal>
-        </div>
-
-        <div className="hero-media">
-          <Reveal afterLoader variant="pill" delay={0.22} duration={0.75}>
-            <div className="hero-pill">
-              {main?.asset ? (
-                <Image
-                  src={urlFor(main).width(680).height(1080).fit('crop').auto('format').url()}
-                  alt={main.alt ?? 'Estufa em produção em Cabo Verde, com folhagem tropical em primeiro plano'}
-                  fill
-                  sizes="(max-width: 960px) 280px, 340px"
-                  priority
-                />
-              ) : (
-                <>
-                  Imagem herói
-                  <br />
-                  (formato pílula)
-                  <br />
-                  <br />
-                  Sugestão:
-                  <br />
-                  estufa em produção
-                  <br />+ folhagem tropical
-                  <br />
-                  de Cabo Verde
-                </>
-              )}
-              <div className="hero-pill-small">
-                {secondary?.asset ? (
-                  <Image
-                    src={urlFor(secondary).width(280).height(400).fit('crop').auto('format').url()}
-                    alt={secondary.alt ?? ''}
-                    fill
-                    sizes="140px"
-                  />
-                ) : (
-                  <>
-                    Imagem secundária
-                    <br />
-                    produto em cena
-                  </>
-                )}
-              </div>
             </div>
           </Reveal>
         </div>
