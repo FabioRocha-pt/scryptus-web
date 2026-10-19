@@ -79,7 +79,6 @@ export interface SanityPageHeader {
 export interface SanityHome {
   hero: {
     mainImage?: SanityImageWithAlt | null
-    secondaryImage?: SanityImageWithAlt | null
     eyebrow?: LText | null
     tagline?: LText | null
     lead?: LText | null
@@ -158,7 +157,7 @@ export const SITE_SETTINGS_QUERY = defineQuery(`*[_type == "siteSettings"][0]{
 }`)
 
 export const HOME_QUERY = defineQuery(`{
-  "hero": *[_type == "hero"][0]{mainImage, secondaryImage, eyebrow, tagline, lead},
+  "hero": *[_type == "hero"][0]{mainImage, eyebrow, tagline, lead},
   "oferta": *[_type == "oferta"][0]{pilares[]{num, titulo, descricao}},
   "sobre": *[_type == "sobre"][0]{image, pullquote, body, estatisticas[]{valor, legenda}},
   "areas": *[_type == "area"] | order(num asc){${AREA_FIELDS}},

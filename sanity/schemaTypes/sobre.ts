@@ -8,7 +8,9 @@ export const sobre = defineType({
     defineField({
       name: 'image',
       title: 'Fotografia (pílula vertical)',
-      description: 'Vertical, 2:3. Sugestão: foto da equipa ou do armazém (Rua da Cruz Vermelha).',
+      description:
+        'Vertical, 2:3. Aparece também em «Conhecer a empresa» se lá não houver outra. ' +
+        'Carregar com pelo menos 680×1100 px.',
       type: 'figura',
     }),
     defineField({

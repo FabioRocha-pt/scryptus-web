@@ -75,14 +75,17 @@ export default async function AreaPage({ params }: { params: Promise<{ slug: str
   const site = resolveSite(settings);
   const nome = pick('pt', area.tituloCurto);
 
-  // A fotografia da área passa a ser o fundo do banner. Uma imagem no Sanity
-  // sobrepõe-se à local; Museus fica sem nenhuma até haver autorização.
+  // A fotografia da área passa a ser o fundo do banner: a de destaque, se houver,
+  // senão a do cartão, senão a local. Museus fica sem nenhuma até haver autorização.
   const local = fotoArea(area.slug);
-  const destaque = area.imagemDestaque?.asset ? area.imagemDestaque : null;
+  const destaque = [area.imagemDestaque, area.imagemCartao].find((img) => img?.asset) ?? null;
   const fundo = destaque
     ? {
         src: urlFor(destaque).width(1920).fit('max').auto('format').url(),
         alt: destaque.alt || local?.alt || `${nome} — Scryptus 1`,
+        posicao: destaque.hotspot
+          ? `${Math.round(destaque.hotspot.x * 100)}% ${Math.round(destaque.hotspot.y * 100)}%`
+          : local?.posicao,
       }
     : local
       ? { src: local.src, alt: local.alt, posicao: local.posicao }

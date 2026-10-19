@@ -22,7 +22,9 @@ export const cliente = defineType({
       name: 'logo',
       title: 'Logótipo',
       type: 'image',
-      description: 'SVG ou PNG com fundo transparente (≈366×220).',
+      description:
+        'PNG ou SVG com fundo transparente, sem caixa branca. A altura no site é ' +
+        'acertada por logótipo para equilibrar o peso óptico.',
       fields: [defineField({name: 'alt', title: 'Texto alternativo', type: 'string'})],
     }),
     defineField({

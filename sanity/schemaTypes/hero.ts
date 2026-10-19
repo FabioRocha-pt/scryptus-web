@@ -11,19 +11,12 @@ export const hero = defineType({
   fields: [
     defineField({
       name: 'mainImage',
-      title: 'Imagem principal (pílula grande)',
+      title: 'Fotografia de fundo',
       description:
-        'Vertical, 2:3. Sugestão: estufa em produção + folhagem tropical de Cabo Verde. ' +
-        'Carregar o original com pelo menos 680×1080 px: a imagem é servida a 2× em ' +
-        'ecrãs retina e um ficheiro mais pequeno fica visivelmente suave — o Sanity ' +
-        'reduz imagens, mas nunca as amplia.',
-      type: 'figura',
-      group: 'imagens',
-    }),
-    defineField({
-      name: 'secondaryImage',
-      title: 'Imagem secundária (pílula pequena)',
-      description: 'Vertical, 7:10. Sugestão: produto em cena.',
+        'Ocupa a faixa do topo de ponta a ponta, sob um degradé verde; o texto fica à ' +
+        'esquerda. Horizontal, com pelo menos 1920 px de largura. Imagens com menos de ' +
+        '1600 px são ignoradas e o site mostra a fotografia por defeito. Carregar o ' +
+        'original sem cortar: o Sanity reduz imagens, mas nunca as amplia.',
       type: 'figura',
       group: 'imagens',
     }),

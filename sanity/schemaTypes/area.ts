@@ -51,17 +51,22 @@ export const area = defineType({
     }),
     defineField({
       name: 'imagemCartao',
-      title: 'Imagem do cartão (4:5)',
+      title: 'Fotografia da área',
       type: 'figura',
       group: 'imagens',
-      description: 'Aparece na grelha de áreas de negócio da página inicial.',
+      description:
+        'Serve o cartão da página inicial e o fundo do banner da página da área. ' +
+        'Carregar o original sem cortar (de preferência com 1600 px ou mais de largura) ' +
+        'e marcar o ponto de interesse (hotspot): é ele que decide o enquadramento.',
     }),
     defineField({
       name: 'imagemDestaque',
-      title: 'Imagem de destaque (16:7)',
+      title: 'Fundo do banner (opcional)',
       type: 'figura',
       group: 'imagens',
-      description: 'Banner largo no topo da página da área.',
+      description:
+        'Só se o banner precisar de uma fotografia diferente da do cartão. ' +
+        'Vazio: o banner usa a «Fotografia da área».',
     }),
     defineField({
       name: 'subcategorias',
