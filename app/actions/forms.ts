@@ -2,15 +2,7 @@
 
 import { redirect } from 'next/navigation';
 import { hasWriteAccess, writeClient } from '@/sanity/lib/writeClient';
-
-export type CodigoErro = 'campos' | 'email' | 'envio';
-
-export interface FormState {
-  estado: 'inicial' | 'ok' | 'erro';
-  codigo?: CodigoErro;
-}
-
-export const ESTADO_INICIAL: FormState = { estado: 'inicial' };
+import type { FormState } from './formState';
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 

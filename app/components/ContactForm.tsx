@@ -2,7 +2,8 @@
 
 import { useActionState, useEffect, useRef } from 'react';
 import type { LText } from '@/sanity/lib/queries';
-import { ESTADO_INICIAL, enviarPedido } from '../actions/forms';
+import { enviarPedido } from '../actions/forms';
+import { ESTADO_INICIAL } from '../actions/formState';
 import { useLocale } from '../i18n/LanguageProvider';
 import type { MaybeLText } from '../i18n/localize';
 import { Tx, TxAccent, useL, useT } from '../i18n/Tx';

@@ -1,7 +1,8 @@
 'use client';
 
 import { useActionState } from 'react';
-import { ESTADO_INICIAL, subscreverNewsletter } from '../actions/forms';
+import { subscreverNewsletter } from '../actions/forms';
+import { ESTADO_INICIAL } from '../actions/formState';
 import { useLocale } from '../i18n/LanguageProvider';
 import { useT } from '../i18n/Tx';
 
