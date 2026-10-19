@@ -12,7 +12,11 @@ import { Reveal } from './motion/Reveal';
  * cima para o texto continuar legível. Uma imagem no Sanity sobrepõe-se à local.
  */
 export default function Hero({ data }: { data?: SanityHome['hero'] }) {
-  const main = data?.mainImage;
+  // Só aceita a imagem do Sanity se tiver largura para um banner de ponta a ponta
+  // (a referência do asset traz as dimensões: image-<id>-<largura>x<altura>-<ext>).
+  // Assim a antiga de 900 × 484 deixa de se sobrepor à fotografia nova.
+  const largura = Number(data?.mainImage?.asset?._ref?.match(/-(\d+)x\d+-/)?.[1] ?? 0);
+  const main = largura >= 1600 ? data?.mainImage : null;
   // O original tem 1920 px: em retina não chega ao dobro da janela, e aceita-se 1920 como teto.
   const src = main?.asset
     ? urlFor(main).width(1920).fit('max').auto('format').url()
