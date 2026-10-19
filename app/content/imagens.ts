@@ -74,14 +74,13 @@ export const FOTOS_AREAS: Record<string, FotoLocal> = {
     largura: 893,
     altura: 1024,
   },
-  // Render do Centro Interpretativo de São Lourenço dos Órgãos. Não se publica até
-  // a Câmara Municipal autorizar por escrito a reprodução (nota de 18/10, ponto 5).
+  // Render do Centro Interpretativo de São Lourenço dos Órgãos — publicação
+  // autorizada (19/10/2026).
   museus: {
     src: '/img/areas/museus.jpg',
     alt: 'Sala do Centro Interpretativo de São Lourenço dos Órgãos, museografia da Scryptus 1',
     largura: 628,
     altura: 720,
-    publicar: false,
   },
   'outras-areas': {
     src: '/img/areas/outras-areas.jpg',

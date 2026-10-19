@@ -76,7 +76,7 @@ export default async function AreaPage({ params }: { params: Promise<{ slug: str
   const nome = pick('pt', area.tituloCurto);
 
   // A fotografia da área passa a ser o fundo do banner: a de destaque, se houver,
-  // senão a do cartão, senão a local. Museus fica sem nenhuma até haver autorização.
+  // senão a do cartão, senão a local.
   const local = fotoArea(area.slug);
   const destaque = [area.imagemDestaque, area.imagemCartao].find((img) => img?.asset) ?? null;
   const fundo = destaque

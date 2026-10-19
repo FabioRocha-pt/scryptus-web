@@ -3,7 +3,7 @@
  * as fotografias da entrega de 18/10 e os logótipos de clientes.
  *
  * Depois disto, o Studio mostra exatamente o que está no site, e editar lá passa
- * a mudar o site. Museus fica sem imagem até haver autorização da Câmara.
+ * a mudar o site.
  *
  * Uso (token Editor, nunca no git):
  *   SANITY_API_WRITE_TOKEN=... npx tsx scripts/sincronizar-sanity.ts
@@ -236,7 +236,7 @@ async function documentos(): Promise<SanityDocumentStub[]> {
       tituloCurto: ls(a.tituloCurto),
       descricaoCartao: lt(a.descricaoCartao),
       lead: lt(a.lead),
-      // Uma fotografia serve o cartão e o banner; Museus fica vazio (publicar: false).
+      // Uma fotografia serve o cartão e o banner.
       ...(foto ? {imagemCartao: await figura(foto)} : {}),
       subcategorias: a.subcategorias.map((s) => ({
         _key: key(),
