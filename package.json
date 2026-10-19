@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "@sanity/image-url": "^2.1.1",
+    "@sanity/locale-pt-pt": "^1.1.37",
     "@sanity/vision": "^5.31.1",
     "framer-motion": "^12.40.0",
     "next": "16.2.9",
