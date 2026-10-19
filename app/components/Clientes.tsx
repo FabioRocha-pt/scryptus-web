@@ -4,6 +4,7 @@ import Image from 'next/image';
 import type { CSSProperties } from 'react';
 import { urlFor } from '@/sanity/lib/image';
 import type { SanityImageWithAlt } from '@/sanity/lib/queries';
+import type { ClienteContent } from '../content/clientes';
 import { Tx } from '../i18n/Tx';
 import { Reveal, RevealGroup, RevealItem } from './motion/Reveal';
 
@@ -11,6 +12,8 @@ export interface ClienteItem {
   nome: string;
   nomeCurto: string;
   logo?: SanityImageWithAlt | null;
+  /** Logótipo em /public/img/clientes, usado quando o Sanity não tem nenhum. */
+  local?: ClienteContent | null;
 }
 
 export default function Clientes({ clientes }: { clientes: ClienteItem[] }) {
@@ -46,13 +49,25 @@ export default function Clientes({ clientes }: { clientes: ClienteItem[] }) {
         <RevealGroup className="clients-grid" stagger={0.05}>
           {clientes.map((cliente) => (
             <RevealItem key={cliente.nome} className="cell" variant="zoom" duration={0.5}>
-              <div className="client" title={cliente.nome}>
+              {/* A altura de cada logótipo vem da classe .c-<chave>: equilibra o peso óptico. */}
+              <div
+                className={cliente.local ? `client c-${cliente.local.chave}` : 'client'}
+                title={cliente.nome}
+              >
                 {cliente.logo?.asset ? (
                   <Image
-                    src={urlFor(cliente.logo).width(366).height(220).fit('max').auto('format').url()}
+                    src={urlFor(cliente.logo).width(248).height(104).fit('max').auto('format').url()}
                     alt={cliente.logo.alt ?? cliente.nome}
-                    width={183}
-                    height={110}
+                    width={124}
+                    height={52}
+                  />
+                ) : cliente.local ? (
+                  <Image
+                    src={`/img/clientes/${cliente.local.chave}.png`}
+                    alt={cliente.nome}
+                    width={cliente.local.largura}
+                    height={cliente.local.altura}
+                    sizes="124px"
                   />
                 ) : (
                   cliente.nomeCurto

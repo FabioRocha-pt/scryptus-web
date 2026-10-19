@@ -19,12 +19,14 @@ import { PORTEFOLIO_DEFAULTS as D } from '../../content/paginas';
 import { resolveAreas } from '../../content/resolveAreas';
 import { resolveSite } from '../../content/site';
 import { hasText } from '../../i18n/localize';
+import { OG_BASE } from '../../content/seo';
 
 export const metadata: Metadata = {
   title: 'Portefólio completo',
   description: D.seoDescription,
   alternates: { canonical: '/portefolio' },
   openGraph: {
+    ...OG_BASE,
     title: 'Portefólio completo — Scryptus 1',
     description: D.seoDescription,
     url: '/portefolio',

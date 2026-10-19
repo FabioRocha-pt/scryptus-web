@@ -17,12 +17,14 @@ import Timeline from '../../components/Timeline';
 import { EMPRESA_DEFAULTS as D } from '../../content/empresa';
 import { resolveSite } from '../../content/site';
 import { hasText } from '../../i18n/localize';
+import { OG_BASE } from '../../content/seo';
 
 export const metadata: Metadata = {
   title: 'Conhecer a empresa',
   description: D.seoDescription,
   alternates: { canonical: '/empresa' },
   openGraph: {
+    ...OG_BASE,
     title: 'Conhecer a empresa — Scryptus 1',
     description: D.seoDescription,
     url: '/empresa',
@@ -82,7 +84,6 @@ export default async function EmpresaPage() {
             paragrafos={paragrafos.length > 0 ? paragrafos : D.sobreParagrafos}
             estatisticas={estatisticas.length > 0 ? estatisticas : D.estatisticas}
             imagem={doc?.imagem}
-            legendaImagem={D.imagemLegenda}
           />
         </div>
       </section>

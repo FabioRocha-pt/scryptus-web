@@ -1,23 +1,9 @@
 import type { Metadata } from "next";
-import { Carlito } from "next/font/google";
-import localFont from "next/font/local";
+import { OG_BASE } from "./content/seo";
 import { SITE_URL } from "./content/site";
 
-// 1. Carregar a Delicious Heavy a partir da pasta public
-const deliciousHeavy = localFont({
-  src: '../public/fonts/Delicious-Heavy.otf',
-  variable: '--display',
-  weight: '900',
-  display: 'swap',
-});
-
-// 2. Carregar a Carlito (texto corrido) otimizada pelo Google Fonts
-const carlito = Carlito({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  style: ['normal', 'italic'],
-  variable: "--body"
-});
+// Fontes auto-hospedadas (Delicious Heavy e Carlito) declaradas em globals.css:
+// nenhum pedido ao Google Fonts.
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -35,11 +21,8 @@ export const metadata: Metadata = {
     apple: "/favicon.png",
   },
   openGraph: {
-    type: "website",
-    siteName: "Scryptus 1",
-    locale: "pt_PT",
+    ...OG_BASE,
     url: SITE_URL,
-    images: [{ url: "/og-imagem.jpg", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
@@ -56,8 +39,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    // 3. Injetar as duas fontes globalmente na tag HTML
-    <html lang="pt" className={`${deliciousHeavy.variable} ${carlito.variable}`}>
+    <html lang="pt">
       <body>{children}</body>
     </html>
   );

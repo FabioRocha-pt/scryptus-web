@@ -96,6 +96,7 @@ const pt = {
   'footer.news.btn': 'Subscrever',
   'footer.rights': '© 2026 Scryptus 1 · Grupo CAVEX · Todos os direitos reservados.',
   'footer.whatsapp': 'Falar no WhatsApp',
+  'footer.mapa': 'Ver no mapa →',
 
   // Páginas de área de negócio
   'area.eyebrow': 'Área de negócio',
@@ -232,6 +233,7 @@ const en: Record<TKey, string> = {
   'footer.news.btn': 'Subscribe',
   'footer.rights': '© 2026 Scryptus 1 · CAVEX Group · All rights reserved.',
   'footer.whatsapp': 'Chat on WhatsApp',
+  'footer.mapa': 'View on map →',
 
   'area.eyebrow': 'Business area',
   'area.oQue': 'What we supply',
@@ -362,6 +364,7 @@ const fr: Record<TKey, string> = {
   'footer.news.btn': 'S’abonner',
   'footer.rights': '© 2026 Scryptus 1 · Groupe CAVEX · Tous droits réservés.',
   'footer.whatsapp': 'Discuter sur WhatsApp',
+  'footer.mapa': 'Voir sur la carte →',
 
   'area.eyebrow': 'Domaine d’activité',
   'area.oQue': 'Ce que nous fournissons',

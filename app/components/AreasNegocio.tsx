@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import type { CSSProperties } from 'react';
 import { urlFor } from '@/sanity/lib/image';
+import { fotoArea } from '../content/imagens';
 import type { ResolvedArea } from '../content/resolveAreas';
 import { Tx, TxL, useL } from '../i18n/Tx';
 import { Reveal, RevealGroup, RevealItem } from './motion/Reveal';
@@ -50,17 +51,25 @@ export default function AreasNegocio({ areas }: { areas: ResolvedArea[] }) {
 
         <RevealGroup className="verticals" stagger={0.08}>
           {areas.map((area) => {
-            const imagem = area.imagemCartao;
+            const imagem = area.imagemCartao?.asset ? area.imagemCartao : null;
+            const local = fotoArea(area.slug);
             const nome = l(area.tituloCurto);
             return (
               <RevealItem key={area.slug} className="cell-fill" variant="up">
                 <div className="vert">
                   <Link className="vert-link" href={`/areas/${area.slug}`}>
                     <div className="img">
-                      {imagem?.asset ? (
+                      {imagem ? (
                         <Image
                           src={urlFor(imagem).width(560).height(644).fit('crop').auto('format').url()}
                           alt={imagem.alt ?? nome}
+                          fill
+                          sizes="(max-width: 600px) 90vw, (max-width: 960px) 45vw, 280px"
+                        />
+                      ) : local ? (
+                        <Image
+                          src={local.src}
+                          alt={local.alt}
                           fill
                           sizes="(max-width: 600px) 90vw, (max-width: 960px) 45vw, 280px"
                         />

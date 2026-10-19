@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import type { CSSProperties } from 'react';
 import type { MaybeLText } from '../i18n/localize';
@@ -31,27 +32,53 @@ function Crumbs({ items }: { items: Crumb[] }) {
   );
 }
 
-/** Topo verde comum a todas as páginas interiores. */
+export interface PageHeroFundo {
+  src: string;
+  alt: string;
+  /** object-position, quando o centro da fotografia não é o que interessa. */
+  posicao?: string;
+}
+
+/**
+ * Topo verde comum a todas as páginas interiores. Com `fundo`, a fotografia
+ * ocupa a faixa de ponta a ponta, sob um degradé que mantém o texto legível.
+ */
 export default function PageHero({
   crumbs,
   kicker,
+  tag,
   eyebrow,
   eyebrowKey,
   titulo,
   lead,
+  fundo,
   orbLime = true,
 }: {
   crumbs?: Crumb[];
   kicker?: string;
+  /** Etiqueta da secção (número + nome), usada nas páginas de área. */
+  tag?: { num: string; nome: MaybeLText };
   eyebrow?: MaybeLText;
   eyebrowKey?: TKey;
   titulo?: MaybeLText;
   lead?: MaybeLText;
+  fundo?: PageHeroFundo | null;
   /** A política de privacidade mostra só o orbe verde. */
   orbLime?: boolean;
 }) {
   return (
-    <section className="page-hero">
+    <section className={fundo ? 'page-hero has-bg' : 'page-hero'}>
+      {fundo && (
+        <Image
+          className="page-hero-bg"
+          src={fundo.src}
+          alt={fundo.alt}
+          fill
+          sizes="100vw"
+          priority
+          style={fundo.posicao ? { objectPosition: fundo.posicao } : undefined}
+        />
+      )}
       {orbLime && (
         <div
           className="orb orb-lime orb-lg"
@@ -73,11 +100,20 @@ export default function PageHero({
             <span className="kicker">{kicker}</span>
           </Reveal>
         )}
-        <Reveal variant="up" delay={0.08}>
-          <span className="eyebrow">
-            {eyebrowKey ? <Tx k={eyebrowKey} /> : <TxL v={eyebrow} />}
-          </span>
-        </Reveal>
+        {tag && (
+          <Reveal variant="up" duration={0.6} delay={0.04}>
+            <span className="area-tag">
+              <b>{tag.num}</b> <TxL v={tag.nome} />
+            </span>
+          </Reveal>
+        )}
+        {(eyebrowKey || eyebrow) && (
+          <Reveal variant="up" delay={0.08}>
+            <span className="eyebrow">
+              {eyebrowKey ? <Tx k={eyebrowKey} /> : <TxL v={eyebrow} />}
+            </span>
+          </Reveal>
+        )}
         <Reveal variant="blur-up" delay={0.16}>
           <h1>
             <TxAccent v={titulo} />

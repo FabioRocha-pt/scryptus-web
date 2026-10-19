@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { fetchContent } from '@/sanity/lib/fetchContent';
+import { urlFor } from '@/sanity/lib/image';
 import {
   AREAS_QUERY,
   AREA_QUERY,
@@ -8,7 +9,6 @@ import {
   type SanityArea,
   type SanitySiteSettings,
 } from '@/sanity/lib/queries';
-import AreaMedia from '../../../components/AreaMedia';
 import BlockHead from '../../../components/BlockHead';
 import CtaBlock from '../../../components/CtaBlock';
 import Notice from '../../../components/Notice';
@@ -16,9 +16,11 @@ import PageHero from '../../../components/PageHero';
 import RelatedAreas from '../../../components/RelatedAreas';
 import Subcats from '../../../components/Subcats';
 import { AREA_SLUGS } from '../../../content/areas';
+import { fotoArea } from '../../../content/imagens';
 import { resolveArea, resolveAreas } from '../../../content/resolveAreas';
 import { resolveSite } from '../../../content/site';
 import { pick } from '../../../i18n/localize';
+import { OG_BASE } from '../../../content/seo';
 
 /** As oito áreas do código, mais qualquer área criada só no Studio. */
 export async function generateStaticParams() {
@@ -46,6 +48,7 @@ export async function generateMetadata({
     description: area.seoDescription,
     alternates: { canonical: `/areas/${area.slug}` },
     openGraph: {
+      ...OG_BASE,
       title: `${titulo} — Scryptus 1`,
       description: area.seoDescription,
       url: `/areas/${area.slug}`,
@@ -72,6 +75,19 @@ export default async function AreaPage({ params }: { params: Promise<{ slug: str
   const site = resolveSite(settings);
   const nome = pick('pt', area.tituloCurto);
 
+  // A fotografia da área passa a ser o fundo do banner. Uma imagem no Sanity
+  // sobrepõe-se à local; Museus fica sem nenhuma até haver autorização.
+  const local = fotoArea(area.slug);
+  const destaque = area.imagemDestaque?.asset ? area.imagemDestaque : null;
+  const fundo = destaque
+    ? {
+        src: urlFor(destaque).width(1920).fit('max').auto('format').url(),
+        alt: destaque.alt || local?.alt || `${nome} — Scryptus 1`,
+      }
+    : local
+      ? { src: local.src, alt: local.alt, posicao: local.posicao }
+      : null;
+
   return (
     <>
       <PageHero
@@ -80,20 +96,15 @@ export default async function AreaPage({ params }: { params: Promise<{ slug: str
           { href: '/#areas', k: 'nav.areas' },
           { v: area.tituloCurto },
         ]}
-        kicker={area.num}
-        eyebrowKey="area.eyebrow"
+        tag={{ num: area.num, nome: area.tituloCurto }}
         titulo={area.titulo}
         lead={area.lead}
+        fundo={fundo}
       />
 
       <section className="block">
         <div className="orb orb-lime orb-md" style={{ top: '120px', right: '-70px' }}></div>
         <div className="wrap">
-          <AreaMedia
-            imagem={area.imagemDestaque}
-            legenda={area.legendaDestaque}
-            alt={`${nome} — Scryptus 1`}
-          />
           <BlockHead
             eyebrowKey="area.oQue"
             tituloKeys={['area.h2a', 'area.h2b']}
