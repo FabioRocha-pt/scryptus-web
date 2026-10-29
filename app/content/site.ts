@@ -19,7 +19,7 @@ export const SITE_DEFAULTS = {
   telefone: '(+238) 264 76 07',
   whatsapp: '(+238) 955 10 20',
   whatsappUrl: 'https://wa.me/2389551020',
-  email: 'info@scryptus1-caboverde.com',
+  email: 'geral@scryptus1-caboverde.com',
   horarioDias: {
     pt: 'Segunda a sexta',
     en: 'Monday to Friday',

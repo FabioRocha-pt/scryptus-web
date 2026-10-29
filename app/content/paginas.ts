@@ -107,7 +107,7 @@ export const PRIVACIDADE_DEFAULTS = {
       titulo: l('Quem é responsável pelos seus dados'),
       paragrafos: [
         l(
-          'Os dados recolhidos através deste site são tratados pela Scryptus 1 — Comercialização de Papéis e Produtos Gráficos, Sociedade Unipessoal, Lda., com sede na Rua da Cruz Vermelha, R/C, Praia, Santiago, Cabo Verde. Para qualquer questão relacionada com privacidade, pode contactar-nos através de info@scryptus1-caboverde.com ou do telefone (+238) 264 76 07.',
+          'Os dados recolhidos através deste site são tratados pela Scryptus 1 — Comercialização de Papéis e Produtos Gráficos, Sociedade Unipessoal, Lda., com sede na Rua da Cruz Vermelha, R/C, Praia, Santiago, Cabo Verde. Para qualquer questão relacionada com privacidade, pode contactar-nos através de geral@scryptus1-caboverde.com ou do telefone (+238) 264 76 07.',
         ),
       ],
       lista: [],
@@ -143,7 +143,7 @@ export const PRIVACIDADE_DEFAULTS = {
     {
       titulo: l('Os seus direitos'),
       paragrafos: [
-        l('Pode, a qualquer momento, solicitar o acesso aos dados pessoais que temos a seu respeito, bem como a sua retificação, o seu apagamento, a limitação do tratamento ou a oposição ao mesmo. Para exercer qualquer destes direitos, basta escrever para info@scryptus1-caboverde.com.'),
+        l('Pode, a qualquer momento, solicitar o acesso aos dados pessoais que temos a seu respeito, bem como a sua retificação, o seu apagamento, a limitação do tratamento ou a oposição ao mesmo. Para exercer qualquer destes direitos, basta escrever para geral@scryptus1-caboverde.com.'),
       ],
       lista: [],
     },

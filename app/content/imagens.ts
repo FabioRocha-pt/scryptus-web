@@ -1,5 +1,5 @@
 /**
- * Fotografias da entrega de 18 de outubro de 2026, servidas a partir de /public/img.
+ * Fotografias da entrega de 29 de outubro de 2026, servidas a partir de /public/img.
  *
  * São o valor por defeito: uma imagem carregada no Sanity para o mesmo espaço
  * sobrepõe-se a esta. Os ficheiros de Têxteis e do Armazém já vêm recortados
@@ -23,9 +23,9 @@ export interface FotoLocal {
 
 export const FOTO_HERO: FotoLocal = {
   src: '/img/hero-principal.jpg',
-  alt: 'Interior de estufa instalada pela Scryptus 1 em Cabo Verde, com fileiras de plântulas e dois técnicos ao fundo',
-  largura: 1920,
-  altura: 1080,
+  alt: 'Mapa-múndi digital sobre um ecrã de vidro, manuseado em reunião — comércio internacional',
+  largura: 2200,
+  altura: 1749,
 }
 
 export const FOTO_ARMAZEM: FotoLocal = {
@@ -45,9 +45,9 @@ export const FOTOS_AREAS: Record<string, FotoLocal> = {
   },
   agricultura: {
     src: '/img/areas/agricultura.jpg',
-    alt: 'Estufa túnel fornecida e instalada pela Scryptus 1',
-    largura: 1668,
-    altura: 1913,
+    alt: 'Estufa instalada pela Scryptus 1 em Cabo Verde, com as portas abertas e fileiras de cultivo lá dentro',
+    largura: 1195,
+    altura: 896,
   },
   texteis: {
     src: '/img/areas/texteis.jpg',
@@ -64,23 +64,25 @@ export const FOTOS_AREAS: Record<string, FotoLocal> = {
   },
   mobiliario: {
     src: '/img/areas/mobiliario.jpg',
-    alt: 'Copa de escritório equipada com mobiliário fornecido pela Scryptus 1',
-    largura: 466,
-    altura: 534,
+    alt: 'Secretárias, cadeiras operativas e blocos de gavetas de mobiliário de escritório',
+    largura: 1024,
+    altura: 563,
   },
   informatica: {
     src: '/img/areas/informatica.jpg',
-    alt: 'Computador, portátil, impressora, periféricos e consumíveis informáticos',
-    largura: 893,
-    altura: 1024,
+    alt: 'Portátil, tablet, telemóvel e teclado sobre uma secretária',
+    largura: 2000,
+    altura: 1324,
   },
-  // Render do Centro Interpretativo de São Lourenço dos Órgãos — publicação
-  // autorizada (19/10/2026).
+  // Fotografia nova (29/10/2026), de autoria por confirmar: se for de um projeto
+  // executado pela Scryptus, precisa de autorização escrita da entidade; se for
+  // licenciada, pode ir para o ar. Até o Ivandro dizer qual, o espaço fica vazio.
   museus: {
     src: '/img/areas/museus.jpg',
-    alt: 'Sala do Centro Interpretativo de São Lourenço dos Órgãos, museografia da Scryptus 1',
-    largura: 628,
-    altura: 720,
+    alt: 'Sala de exposição com vitrinas iluminadas, mesas interativas e painel de cronologia',
+    largura: 1368,
+    altura: 912,
+    publicar: false,
   },
   'outras-areas': {
     src: '/img/areas/outras-areas.jpg',
@@ -94,4 +96,16 @@ export const FOTOS_AREAS: Record<string, FotoLocal> = {
 export function fotoArea(slug: string): FotoLocal | null {
   const foto = FOTOS_AREAS[slug]
   return foto && foto.publicar !== false ? foto : null
+}
+
+/**
+ * Fachada da loja, para o topo de /contactos. O ficheiro ainda não existe: a
+ * página só usa a fotografia se public/img/fachada.jpg estiver lá no build.
+ * Horizontal, pelo menos 1600 px de largura.
+ */
+export const FOTO_FACHADA: FotoLocal = {
+  src: '/img/fachada.jpg',
+  alt: 'Fachada da loja da Scryptus 1 na Rua da Cruz Vermelha, na Praia',
+  largura: 1600,
+  altura: 1067,
 }

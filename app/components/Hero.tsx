@@ -17,7 +17,7 @@ export default function Hero({ data }: { data?: SanityHome['hero'] }) {
   // Assim a antiga de 900 × 484 deixa de se sobrepor à fotografia nova.
   const largura = Number(data?.mainImage?.asset?._ref?.match(/-(\d+)x\d+-/)?.[1] ?? 0);
   const main = largura >= 1600 ? data?.mainImage : null;
-  // O original tem 1920 px: em retina não chega ao dobro da janela, e aceita-se 1920 como teto.
+  // Em retina não há pixels para o dobro da janela: aceita-se 1920 como teto.
   const src = main?.asset
     ? urlFor(main).width(1920).fit('max').auto('format').url()
     : FOTO_HERO.src;

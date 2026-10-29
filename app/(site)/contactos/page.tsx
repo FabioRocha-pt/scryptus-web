@@ -1,3 +1,5 @@
+import { existsSync } from 'node:fs';
+import path from 'node:path';
 import type { Metadata } from 'next';
 import { fetchContent } from '@/sanity/lib/fetchContent';
 import {
@@ -12,6 +14,7 @@ import {
 import ContactForm from '../../components/ContactForm';
 import ContactInfo from '../../components/ContactInfo';
 import PageHero from '../../components/PageHero';
+import { FOTO_FACHADA } from '../../content/imagens';
 import { CONTACTOS_DEFAULTS as D } from '../../content/paginas';
 import { resolveAreas } from '../../content/resolveAreas';
 import { resolveSite } from '../../content/site';
@@ -29,6 +32,11 @@ export const metadata: Metadata = {
     url: '/contactos',
   },
 };
+
+// Enquanto não houver fotografia da fachada, a faixa fica só com o verde.
+const fachada = existsSync(path.join(process.cwd(), 'public', FOTO_FACHADA.src))
+  ? { src: FOTO_FACHADA.src, alt: FOTO_FACHADA.alt }
+  : null;
 
 const txt = (doc: LText | null | undefined, defeito: LText): LText =>
   hasText(doc) ? (doc as LText) : defeito;
@@ -54,6 +62,7 @@ export default async function ContactosPage() {
         eyebrow={txt(doc?.eyebrow, D.eyebrow)}
         titulo={txt(doc?.titulo, D.titulo)}
         lead={txt(doc?.lead, D.lead)}
+        fundo={fachada}
       />
 
       <section className="block">

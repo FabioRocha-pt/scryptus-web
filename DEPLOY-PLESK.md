@@ -30,7 +30,7 @@ Opcional, para receber cada pedido também por email (resend.com):
 
 ```
 RESEND_API_KEY=...
-CONTACT_EMAIL_TO=info@scryptus1-caboverde.com
+CONTACT_EMAIL_TO=geral@scryptus1-caboverde.com
 CONTACT_EMAIL_FROM=site@scryptus1-caboverde.com
 ```
 
