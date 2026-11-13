@@ -4,8 +4,9 @@ import type {ClienteItem} from '../components/Clientes'
 /**
  * Clientes de referência.
  *
- * Os logótipos (PNG com fundo transparente, entrega de 18/10) vivem em
- * /public/img/clientes. Um logótipo carregado no Sanity sobrepõe-se ao local.
+ * Os logótipos (PNG a preto com fundo transparente) vivem em /public/img/clientes.
+ * Em 13/11/2026 saíram CM Praia, CM São Vicente e INIDA e entraram Tipografia
+ * Santos, DIKOR e Printer Center (pedido da cliente de 12/11). Um logótipo carregado no Sanity sobrepõe-se ao local.
  * Sem nenhum dos dois, o site mostra a sigla — nunca imagens partidas.
  */
 export interface ClienteContent {
@@ -27,14 +28,6 @@ export const CLIENTES: ClienteContent[] = [
     chave: 'maa',
     largura: 784,
     altura: 256,
-  },
-  {nome: 'Câmara Municipal da Praia', nomeCurto: 'CMP', chave: 'cmp', largura: 497, altura: 501},
-  {
-    nome: 'Câmara Municipal de São Vicente',
-    nomeCurto: 'CM São Vicente',
-    chave: 'cmm',
-    largura: 522,
-    altura: 508,
   },
   {
     nome: 'Imprensa Nacional de Cabo Verde',
@@ -60,11 +53,19 @@ export const CLIENTES: ClienteContent[] = [
     altura: 157,
   },
   {
-    nome: 'Instituto Nacional de Investigação e Desenvolvimento Agrário',
-    nomeCurto: 'INIDA',
-    chave: 'inida',
-    largura: 645,
-    altura: 243,
+    nome: 'Tipografia Santos',
+    nomeCurto: 'Tip. Santos',
+    chave: 'tipsantos',
+    largura: 640,
+    altura: 601,
+  },
+  {nome: 'DIKOR', nomeCurto: 'DIKOR', chave: 'dikor', largura: 292, altura: 134},
+  {
+    nome: 'Printer Center',
+    nomeCurto: 'Printer Center',
+    chave: 'printercenter',
+    largura: 359,
+    altura: 192,
   },
 ]
 

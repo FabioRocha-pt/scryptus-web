@@ -42,7 +42,21 @@ export const siteSettings = defineType({
       group: 'contactos',
       description: 'Ex.: https://wa.me/2389551020',
     }),
-    defineField({name: 'email', title: 'Email', type: 'string', group: 'contactos'}),
+    defineField({
+      name: 'email',
+      title: 'Email geral',
+      type: 'string',
+      group: 'contactos',
+      description: 'Aparece no rodapé, junto à morada.',
+    }),
+    defineField({
+      name: 'emailComercial',
+      title: 'Email comercial',
+      type: 'string',
+      group: 'contactos',
+      description:
+        'Para pedidos de proposta e de projeto: botões «Enviar email» e página de contactos.',
+    }),
     defineField({name: 'horarioDias', title: 'Dias de abertura', type: 'localeString', group: 'contactos'}),
     defineField({
       name: 'horarioHoras',

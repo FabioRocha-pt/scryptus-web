@@ -318,16 +318,14 @@ footer .bottom { display: flex; justify-content: space-between; align-items: cen
 .c-bai img { max-height: 35px }
 .c-bca img { max-height: 50px }
 .c-bcv img { max-height: 36px }
-/* Os brasões municipais são de traço fino: com a opacidade dos outros, desapareciam. */
-.c-cmm img { max-height: 51px; opacity: 0.62 }
-.c-cmp img { max-height: 52px; opacity: 0.62 }
 .c-correios img { max-height: 27px }
 .c-cvt img { max-height: 27px }
+.c-dikor img { max-height: 42px }
 .c-iefp img { max-height: 34px }
 .c-incv img { max-height: 38px }
-.c-inida img { max-height: 34px }
 .c-maa img { max-height: 32px; opacity: 0.58 }
-.c-cmm:hover img, .c-cmp:hover img { opacity: 1 }
+.c-printercenter img { max-height: 46px }
+.c-tipsantos img { max-height: 50px }
 
 /* ============================================================
    PÁGINAS INTERIORES

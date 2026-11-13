@@ -56,7 +56,7 @@ export default function ContactInfo({ site, passos }: { site: SiteInfo; passos: 
               <Tx k="contact.email" />
             </span>
             <span className="v">
-              <a href={`mailto:${site.email}`}>{site.email}</a>
+              <a href={`mailto:${site.emailComercial}`}>{site.emailComercial}</a>
             </span>
           </div>
         </div>

@@ -20,6 +20,9 @@ export const SITE_DEFAULTS = {
   whatsapp: '(+238) 955 10 20',
   whatsappUrl: 'https://wa.me/2389551020',
   email: 'geral@scryptus1-caboverde.com',
+  // Pedidos de proposta e de projeto (botões «Enviar email» e página de contactos).
+  // O geral@ fica só no rodapé, junto à morada.
+  emailComercial: 'comercial@scryptus1-caboverde.com',
   horarioDias: {
     pt: 'Segunda a sexta',
     en: 'Monday to Friday',
@@ -80,6 +83,7 @@ export interface SiteInfo {
   whatsapp: string
   whatsappUrl: string
   email: string
+  emailComercial: string
   horarioDias: LText
   horarioHoras: string
   mapaUrl: string
@@ -112,6 +116,7 @@ export function resolveSite(settings: SanitySiteSettings | null): SiteInfo {
     whatsapp,
     whatsappUrl: whatsappHref(whatsapp, texto(settings?.whatsappUrl, d.whatsappUrl)),
     email: texto(settings?.email, d.email),
+    emailComercial: texto(settings?.emailComercial, d.emailComercial),
     horarioDias: hasText(settings?.horarioDias) ? settings!.horarioDias! : d.horarioDias,
     horarioHoras: texto(settings?.horarioHoras, d.horarioHoras),
     mapaUrl: texto(settings?.mapaUrl, d.mapaUrl),

@@ -99,6 +99,7 @@ async function documentos(): Promise<SanityDocumentStub[]> {
     whatsapp: d.whatsapp,
     whatsappUrl: d.whatsappUrl,
     email: d.email,
+    emailComercial: d.emailComercial,
     horarioDias: ls(d.horarioDias),
     horarioHoras: d.horarioHoras,
     mapaUrl: d.mapaUrl,

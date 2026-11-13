@@ -28,6 +28,18 @@ export const FOTO_HERO: FotoLocal = {
   altura: 1749,
 }
 
+/**
+ * Alternativa «Página inicial_V2» da cliente, só para comparação em /previa/hero-v2.
+ * Ainda não é a escolha definitiva: se for aprovada, passa a ser a FOTO_HERO.
+ */
+export const FOTO_HERO_V2: FotoLocal = {
+  src: '/img/hero-principal-v2.jpg',
+  alt: 'Mão a tocar num mapa-múndi digital com ligações entre continentes — comércio internacional',
+  largura: 2200,
+  altura: 1296,
+  posicao: '38% 40%',
+}
+
 export const FOTO_ARMAZEM: FotoLocal = {
   src: '/img/armazem.jpg',
   alt: 'Armazém da Scryptus 1 com lonas, vinis e materiais de comunicação visual em prateleiras',
@@ -74,15 +86,13 @@ export const FOTOS_AREAS: Record<string, FotoLocal> = {
     largura: 2000,
     altura: 1324,
   },
-  // Fotografia nova (29/10/2026), de autoria por confirmar: se for de um projeto
-  // executado pela Scryptus, precisa de autorização escrita da entidade; se for
-  // licenciada, pode ir para o ar. Até o Ivandro dizer qual, o espaço fica vazio.
+  // Fotografia fornecida pela cliente (Museu.jpg). Esteve retida até 13/11/2026
+  // por faltar confirmar a autoria; publicada a pedido da cliente (email de 12/11).
   museus: {
     src: '/img/areas/museus.jpg',
     alt: 'Sala de exposição com vitrinas iluminadas, mesas interativas e painel de cronologia',
     largura: 1368,
     altura: 912,
-    publicar: false,
   },
   'outras-areas': {
     src: '/img/areas/outras-areas.jpg',

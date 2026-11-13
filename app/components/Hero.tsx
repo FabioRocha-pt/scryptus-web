@@ -4,28 +4,38 @@ import Image from 'next/image';
 import { urlFor } from '@/sanity/lib/image';
 import type { SanityHome } from '@/sanity/lib/queries';
 import { Tx, TxOr } from '../i18n/Tx';
-import { FOTO_HERO } from '../content/imagens';
+import { FOTO_HERO, type FotoLocal } from '../content/imagens';
 import { Reveal } from './motion/Reveal';
 
 /**
  * Herói da página inicial: a fotografia ocupa a faixa toda, com um degradé por
- * cima para o texto continuar legível. Uma imagem no Sanity sobrepõe-se à local.
+ * cima para o texto continuar legível. Uma imagem no Sanity sobrepõe-se à local,
+ * exceto quando `foto` vem indicada (pré-visualização de uma alternativa).
  */
-export default function Hero({ data }: { data?: SanityHome['hero'] }) {
+export default function Hero({ data, foto }: { data?: SanityHome['hero']; foto?: FotoLocal }) {
   // Só aceita a imagem do Sanity se tiver largura para um banner de ponta a ponta
   // (a referência do asset traz as dimensões: image-<id>-<largura>x<altura>-<ext>).
   // Assim a antiga de 900 × 484 deixa de se sobrepor à fotografia nova.
   const largura = Number(data?.mainImage?.asset?._ref?.match(/-(\d+)x\d+-/)?.[1] ?? 0);
-  const main = largura >= 1600 ? data?.mainImage : null;
+  const main = !foto && largura >= 1600 ? data?.mainImage : null;
+  const local = foto ?? FOTO_HERO;
   // Em retina não há pixels para o dobro da janela: aceita-se 1920 como teto.
   const src = main?.asset
     ? urlFor(main).width(1920).fit('max').auto('format').url()
-    : FOTO_HERO.src;
-  const alt = (main?.asset && main.alt) || FOTO_HERO.alt;
+    : local.src;
+  const alt = (main?.asset && main.alt) || local.alt;
 
   return (
     <section className="hero has-bg">
-      <Image className="hero-bg" src={src} alt={alt} fill sizes="100vw" priority />
+      <Image
+        className="hero-bg"
+        src={src}
+        alt={alt}
+        fill
+        sizes="100vw"
+        priority
+        style={!main && local.posicao ? { objectPosition: local.posicao } : undefined}
+      />
       <div className="orb orb-lime orb-xl" style={{ top: '-100px', left: '-150px' }}></div>
       <div className="orb orb-green orb-lg" style={{ bottom: '-80px', right: '10%' }}></div>
       <div className="orb orb-lime orb-md" style={{ top: '30%', right: '38%' }}></div>

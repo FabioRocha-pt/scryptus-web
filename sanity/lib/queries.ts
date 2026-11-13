@@ -59,6 +59,7 @@ export interface SanitySiteSettings {
   whatsapp?: string | null
   whatsappUrl?: string | null
   email?: string | null
+  emailComercial?: string | null
   horarioDias?: LText | null
   horarioHoras?: string | null
   mapaUrl?: string | null
@@ -151,7 +152,7 @@ const CABECALHO = `eyebrow, titulo, lead`
 /* ── Consultas ─────────────────────────────────────────────────────── */
 
 export const SITE_SETTINGS_QUERY = defineQuery(`*[_type == "siteSettings"][0]{
-  razaoSocial, tagline, morada, telefone, whatsapp, whatsappUrl, email,
+  razaoSocial, tagline, morada, telefone, whatsapp, whatsappUrl, email, emailComercial,
   horarioDias, horarioHoras, mapaUrl, facebook, instagram, linkedin,
   newsletterTexto, copyright, ogImage
 }`)

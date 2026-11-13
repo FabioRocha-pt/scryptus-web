@@ -56,7 +56,7 @@ export default function CtaBlock({
             >
               WhatsApp · {site.whatsapp}
             </a>
-            <a href={`mailto:${site.email}`} className="btn btn-ghost">
+            <a href={`mailto:${site.emailComercial}`} className="btn btn-ghost">
               <Tx k="cta.email" />
             </a>
             <a href={site.telHref} className="btn btn-ghost">
